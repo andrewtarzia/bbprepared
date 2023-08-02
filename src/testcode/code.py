@@ -9,41 +9,40 @@ Author: Andrew Tarzia
 
 """
 
-import matplotlib.pyplot as plt
-import logging
-import pathlib
-import sys
-import numpy as np
-from openbabel import pybel as pb
 import copy
-import os
+
+# import shutil
+import itertools
 import json
-import stk
-import uuid
+import logging
+import os
+import pathlib
 import shutil
+import subprocess as sp
+import sys
+import uuid
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+import stk
 import stko
+from openbabel import pybel as pb
 from rdkit.Chem import AllChem as rdkit
+from rdkit.Chem import rdMolTransforms
 from rdkit.Chem.rdmolfiles import (
     MolFromMolBlock,
     MolToMolBlock,
     MolToXYZBlock,
 )
-import matplotlib as mpl
-
-# import shutil
-import itertools
-from rdkit.Chem import rdMolTransforms
-import subprocess as sp
-
-
 from utilities import (
-    update_from_rdkit_conf,
-    calculate_N_centroid_N_angle,
-    calculate_NN_distance,
-    calculate_NN_BCN_angles,
-    calculate_NCCN_dihedral,
-    get_furthest_pair_FGs,
     AromaticCNCFactory,
+    calculate_N_centroid_N_angle,
+    calculate_NCCN_dihedral,
+    calculate_NN_BCN_angles,
+    calculate_NN_distance,
+    get_furthest_pair_FGs,
+    update_from_rdkit_conf,
 )
 
 
@@ -83,7 +82,6 @@ class XTBFFMD(stko.XTBFF):
         self._shake = shake
 
     def _run_xtb(self, xyz, out_file):
-
         # Modify the memory limit.
         if self._unlimited_memory:
             memory = "ulimit -s unlimited ;"
@@ -131,7 +129,6 @@ class XTBFFMD(stko.XTBFF):
             f.write(string)
 
     def _run_md(self, mol):
-
         xyz = "input_structure_1.xyz"
         out_file = "md_1.output"
         mol.write(xyz)
@@ -145,7 +142,6 @@ class XTBFFMD(stko.XTBFF):
         return mol
 
     def optimize(self, mol):
-
         if self._output_dir is None:
             output_dir = str(uuid.uuid4().int)
         else:
@@ -302,9 +298,7 @@ def conformer_generation_xtb(
             ).optimize(mol=new_mol)
 
             lig_conf_data[f"{cid}_opt"] = {
-                "NcentroidN_angle": calculate_N_centroid_N_angle(
-                    new_mol
-                ),
+                "NcentroidN_angle": calculate_N_centroid_N_angle(new_mol),
                 "NCCN_dihedral": calculate_NCCN_dihedral(new_mol),
                 "NN_distance": calculate_NN_distance(new_mol),
                 "NN_BCN_angles": calculate_NN_BCN_angles(new_mol),
@@ -426,13 +420,9 @@ def conformer_generation_uff(
 
 def stk_mol_to_pybel_mol(stk_mol, reperceive_bonds=False):
     if reperceive_bonds:
-        return pb.readstring(
-            "xyz", MolToXYZBlock(stk_mol.to_rdkit_mol())
-        )
+        return pb.readstring("xyz", MolToXYZBlock(stk_mol.to_rdkit_mol()))
     else:
-        return pb.readstring(
-            "mol", MolToMolBlock(stk_mol.to_rdkit_mol())
-        )
+        return pb.readstring("mol", MolToMolBlock(stk_mol.to_rdkit_mol()))
 
 
 def pybel_mol_to_stk_mol(pybel_mol):
@@ -466,9 +456,7 @@ def conformer_generation_ob(
     for cid, stkconf in enumerate(stk_conformers):
         conf_opt_file_name = calc_dir / f"{name}_c{cid}_cob.mol"
         # Update stk_mol to conformer geometry.
-        new_mol = molecule.with_position_matrix(
-            stkconf.get_position_matrix()
-        )
+        new_mol = molecule.with_position_matrix(stkconf.get_position_matrix())
         # Need to define the functional groups.
         new_mol = stk.BuildingBlock.init_from_molecule(
             molecule=new_mol,
@@ -522,7 +510,6 @@ def plot_vs_energy(
     yproperty,
     figure_output,
 ):
-
     options = (
         (uff_results_dict, "uff", "#c057a1", "UFFEnergy;kj/mol"),
         (ob_results_dict, "ob", "r", "UFFEnergy;kj/mol"),
@@ -653,7 +640,7 @@ def ligand_fakerama_plot(
         initial_torsion2 = data["initial_torsion2"]
         dihedrals = data["dihedrals"]
         bite_angles = data["bite_angles"]
-        NN_lengths = data['NN_lengths']
+        NN_lengths = data["NN_lengths"]
         energies = data["energies"]
         angle1s = data["angle1s"]
         angle2s = data["angle2s"]
@@ -716,9 +703,7 @@ def ligand_fakerama_plot(
         for smarts in target_smarts:
             query = rdkit.MolFromSmarts(smarts)
             matches = rdk_mol.GetSubstructMatches(query)
-            logging.info(
-                f"num matches for {name},{smarts}: {len(matches)}"
-            )
+            logging.info(f"num matches for {name},{smarts}: {len(matches)}")
             for match in matches:
                 N_atom_id = match[target_smarts[smarts][0]]
 
@@ -750,9 +735,7 @@ def ligand_fakerama_plot(
             )
             > 1
         ):
-            logging.info(
-                "there is an overlap in torsions. Only rotating one."
-            )
+            logging.info("there is an overlap in torsions. Only rotating one.")
             overlapping = True
         else:
             overlapping = False
@@ -779,8 +762,7 @@ def ligand_fakerama_plot(
                 torsion_atom_ids_2[3],
             )
             logging.info(
-                f"initial torsions: {initial_torsion1}, "
-                f"{initial_torsion2}"
+                f"initial torsions: {initial_torsion1}, " f"{initial_torsion2}"
             )
             angle_range1 = [
                 int(initial_torsion1 + i) for i in range(0, 362, 10)
@@ -866,8 +848,7 @@ def ligand_fakerama_plot(
                     # Run xTB opt.
                     conf_mol.write(xtb_dir / "input.xyz")
                     xtb_path = (
-                        "/home/atarzia/miniconda3/envs/simple_het/bin/"
-                        "xtb"
+                        "/home/atarzia/miniconda3/envs/simple_het/bin/" "xtb"
                     )
                     cmd = (
                         "ulimit -s unlimited ; "
@@ -904,9 +885,7 @@ def ligand_fakerama_plot(
                     with open(out_file, "r") as f:
                         for line in f.readlines():
                             if "TOTAL ENERGY" in line:
-                                XtbEnergy = float(
-                                    line.strip().split()[3]
-                                )
+                                XtbEnergy = float(line.strip().split()[3])
 
                 except FileNotFoundError:
                     logging.info(
@@ -921,28 +900,18 @@ def ligand_fakerama_plot(
                         previous_cname = f"c_{angle1-20}_{angle2-20}"
 
                     previous_xtb_dir = (
-                        conformer_search_dir
-                        / f"{previous_cname}_xtbopt"
+                        conformer_search_dir / f"{previous_cname}_xtbopt"
                     )
-                    if not os.path.exists(
-                        previous_xtb_dir / "xtbopt.xyz"
-                    ):
+                    if not os.path.exists(previous_xtb_dir / "xtbopt.xyz"):
                         if overlapping:
-                            previous_cname = (
-                                f"c_{angle1-40}_{int(angle2)}"
-                            )
+                            previous_cname = f"c_{angle1-40}_{int(angle2)}"
                         else:
-                            previous_cname = (
-                                f"c_{angle1-40}_{angle2-40}"
-                            )
+                            previous_cname = f"c_{angle1-40}_{angle2-40}"
                         previous_xtb_dir = (
-                            conformer_search_dir
-                            / f"{previous_cname}_xtbopt"
+                            conformer_search_dir / f"{previous_cname}_xtbopt"
                         )
 
-                    if not os.path.exists(
-                        previous_xtb_dir / "xtbopt.xyz"
-                    ):
+                    if not os.path.exists(previous_xtb_dir / "xtbopt.xyz"):
                         raise ValueError(
                             "Had to go back many times, and none found."
                             " This is broken!"
@@ -952,9 +921,7 @@ def ligand_fakerama_plot(
                     )
                     continue
 
-                conf_mol.write(
-                    conformer_search_dir / f"conf_{cname}.mol"
-                )
+                conf_mol.write(conformer_search_dir / f"conf_{cname}.mol")
                 NCCN_dihedral = calculate_NCCN_dihedral(conf_mol)
                 NN_BCN_angles = calculate_NN_BCN_angles(conf_mol)
                 NN_length = calculate_NN_distance(conf_mol)
@@ -1006,7 +973,7 @@ def ligand_fakerama_plot(
         data["initial_torsion2"] = initial_torsion2
         data["dihedrals"] = dihedrals
         data["bite_angles"] = bite_angles
-        data['NN_lengths'] = NN_lengths
+        data["NN_lengths"] = NN_lengths
         data["energies"] = energies
         data["angle1s"] = angle1s
         data["angle2s"] = angle2s
@@ -1289,15 +1256,9 @@ def main():
 
         continue
 
-        confuff_data_file = (
-            calculation_output / f"{lig}_conf_uff_data.json"
-        )
-        confob_data_file = (
-            calculation_output / f"{lig}_conf_ob_data.json"
-        )
-        confxtb_data_file = (
-            calculation_output / f"{lig}_conf_xtbmd_data.json"
-        )
+        confuff_data_file = calculation_output / f"{lig}_conf_uff_data.json"
+        confob_data_file = calculation_output / f"{lig}_conf_ob_data.json"
+        confxtb_data_file = calculation_output / f"{lig}_conf_xtbmd_data.json"
 
         unopt_mol = stk.BuildingBlock(
             smiles=lsmiles[lig],
