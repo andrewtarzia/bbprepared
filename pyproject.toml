@@ -80,6 +80,7 @@ module = [
   "spindry.*",
   "pymongo.*",
   "vabene.*",
-  "setuptools.*"
+  "setuptools.*",
+  "stko.*",
 ]
 ignore_missing_imports = true
