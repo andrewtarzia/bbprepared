@@ -9,10 +9,12 @@ maintainers = [
 ]
 dependencies = [
   "rdkit",
+  "stk",
+  "stko",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dynamic = ["version"]
-readme = "README.rst"
+readme = "README.md"
 
 [project.optional-dependencies]
 dev = [
@@ -33,6 +35,12 @@ github = "https://github.com/andrewtarzia/bbprepared"
 
 [tool.setuptools_scm]
 write_to = "src/bbprep/_version.py"
+
+[tool.setuptools.packages.find]
+where = [
+  # list of folders that contain the packages (["."] by default)
+  "src",
+]
 
 [tool.black]
 line-length = 79
