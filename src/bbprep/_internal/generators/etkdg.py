@@ -1,7 +1,7 @@
-import typing
-
 import stk
 from rdkit.Chem import AllChem as rdkit
+
+from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
 
 
 class ETKDG:
@@ -12,7 +12,7 @@ class ETKDG:
 
     """
 
-    def __init__(self, num_confs):
+    def __init__(self, num_confs: int):
         """
         Initialise ETKDG generator.
 
@@ -26,7 +26,7 @@ class ETKDG:
     def generate_conformers(
         self,
         molecule: stk.Molecule,
-    ) -> typing.Iterable[stk.Molecule]:
+    ) -> Ensemble:
         rdkit_molecule = molecule.to_rdkit_mol()
         rdkit_molecule.RemoveAllConformers()
 
@@ -38,6 +38,15 @@ class ETKDG:
             params=params,
         )
 
+        ensemble = Ensemble(base_molecule=molecule)
         for cid in cids:
             pos_mat = rdkit_molecule.GetConformer(id=cid).GetPositions()
-            yield molecule.with_position_matrix(pos_mat)
+            ensemble.add_conformer(
+                conformer=Conformer(
+                    molecule=molecule.with_position_matrix(pos_mat),
+                    conformer_id=cid,
+                    source="etkdg-v3",
+                ),
+            )
+
+        return ensemble
