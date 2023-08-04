@@ -18,10 +18,9 @@ def test_planarfy(molecule):
 
     """
 
-    process = Planarfy(
-        generator=ETKDG(num_confs=10),
-        molecule=molecule.molecule,
-    )
+    ensemble = ETKDG(num_confs=10).generate_conformers(molecule.molecule)
+
+    process = Planarfy(ensemble=ensemble)
 
     min_molecule = process.get_minimum()
     all_scores = process.get_all_scores()
