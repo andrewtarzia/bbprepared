@@ -20,10 +20,11 @@ def test_planarfy(molecule):
 
     ensemble = ETKDG(num_confs=10).generate_conformers(molecule.molecule)
 
-    process = Planarfy(ensemble=ensemble)
+    process = Planarfy(ensemble=ensemble, selector=molecule.selector)
 
     min_molecule = process.get_minimum()
     all_scores = process.get_all_scores()
+    print(all_scores)
 
     assert min(all_scores) == process.calculate_score(
         min_molecule, molecule.min_id
