@@ -16,7 +16,7 @@ import stk
 
 @dataclass
 class Conformer:
-    molecule: stk.Molecule
+    molecule: stk.BuildingBlock
     conformer_id: int | None = None
     source: str | None = None
 
