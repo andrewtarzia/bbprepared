@@ -9,7 +9,7 @@ class AllSelector(Selector):
 
     """
 
-    def select_atoms(self, molecule: stk.Molecule) -> tuple[int]:
+    def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
         return tuple(i.get_id() for i in molecule.get_atoms())
 
 
@@ -19,7 +19,7 @@ class AllNonHSelector(Selector):
 
     """
 
-    def select_atoms(self, molecule: stk.Molecule) -> tuple[int]:
+    def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
         return tuple(
             i.get_id()
             for i in molecule.get_atoms()

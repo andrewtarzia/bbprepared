@@ -17,7 +17,7 @@ class BySmartsSelector(Selector):
         """
         self._smarts = smarts
 
-    def select_atoms(self, molecule: stk.Molecule) -> tuple[int]:
+    def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
         rdkit_mol = molecule.to_rdkit_mol()
         rdkit.SanitizeMol(rdkit_mol)
         matches = rdkit_mol.GetSubstructMatches(

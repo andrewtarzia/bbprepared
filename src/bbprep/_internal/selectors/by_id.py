@@ -16,7 +16,7 @@ class ByIdSelector(Selector):
         """
         self._ids = ids
 
-    def select_atoms(self, molecule: stk.Molecule) -> tuple[int]:
+    def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
         return tuple(
             i.get_id() for i in molecule.get_atoms(atom_ids=self._ids)
         )
