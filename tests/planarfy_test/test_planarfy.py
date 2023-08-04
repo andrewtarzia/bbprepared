@@ -3,7 +3,6 @@ import pathlib
 
 import numpy as np
 from bbprep import Planarfy
-from bbprep.generators import ETKDG
 
 
 def test_planarfy(molecule):
@@ -21,7 +20,7 @@ def test_planarfy(molecule):
 
     """
 
-    ensemble = ETKDG(num_confs=10).generate_conformers(molecule.molecule)
+    ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = Planarfy(ensemble=ensemble, selector=molecule.selector)
 
@@ -31,6 +30,10 @@ def test_planarfy(molecule):
 
     all_scores = process.get_all_scores()
     print(all_scores)
+    print(
+        process.get_minimum_id(),
+        process.calculate_score(min_molecule, molecule.min_id),
+    )
 
     assert np.isclose(molecule.min_value, min(all_scores), rtol=0, atol=1e-3)
     assert molecule.min_id == process.get_minimum_id()

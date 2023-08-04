@@ -1,8 +1,8 @@
 import os
 import pathlib
 
+import numpy as np
 from bbprep import TargetTorsion
-from bbprep.generators import ETKDG
 
 
 def test_targettorsion(molecule):
@@ -20,7 +20,7 @@ def test_targettorsion(molecule):
 
     """
 
-    ensemble = ETKDG(num_confs=30).generate_conformers(molecule.molecule)
+    ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = TargetTorsion(
         ensemble=ensemble,
@@ -34,8 +34,24 @@ def test_targettorsion(molecule):
 
     all_scores = process.get_all_scores()
     print(all_scores)
+    print(
+        process.get_best_id(),
+        process.calculate_value(
+            best_molecule,
+            molecule.best_id,
+        ),
+    )
 
     assert molecule.best_id == process.get_best_id()
     assert min(all_scores) == process.calculate_score(
         best_molecule, molecule.best_id
+    )
+    assert np.isclose(
+        molecule.best_value,
+        process.calculate_value(
+            best_molecule,
+            molecule.best_id,
+        ),
+        rtol=0,
+        atol=5e-1,
     )
