@@ -11,3 +11,17 @@ class AllSelector(Selector):
 
     def select_atoms(self, molecule: stk.Molecule) -> tuple[int]:
         return tuple(i.get_id() for i in molecule.get_atoms())
+
+
+class AllNonHSelector(Selector):
+    """
+    Select all atom ids.
+
+    """
+
+    def select_atoms(self, molecule: stk.Molecule) -> tuple[int]:
+        return tuple(
+            i.get_id()
+            for i in molecule.get_atoms()
+            if i.get_atomic_number() != 1
+        )
