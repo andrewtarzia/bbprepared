@@ -1,9 +1,10 @@
+import numpy as np
 import stk
-import stko
 
 from bbprep._internal.ensemble.ensemble import Conformer
 
 from .process import Process
+from .utilities import angle_between
 
 
 class MinimiseAngle(Process):
@@ -21,12 +22,16 @@ class MinimiseAngle(Process):
         if key in self._data:
             return self._data[key]
 
-        pc = stko.PlanarityCalculator()
-        pc_results = pc.get_results(
-            conformer.molecule,
-            plane_atom_ids=self._selector(conformer.molecule),
-            deviation_atom_ids=self._selector(conformer.molecule),
+        atom_positions = self._selector.get_atomic_positions(
+            conformer.molecule
         )
-        value = pc_results.get_planarity_parameter()
+
+        assert len(atom_positions) == 3
+
+        vectors = (
+            atom_positions[0] - atom_positions[1],
+            atom_positions[2] - atom_positions[1],
+        )
+        value = np.degrees(angle_between(*vectors))
         self._save_to_data(conformer, conformer_id, value)
         return self._data[key]
