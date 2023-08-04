@@ -9,11 +9,25 @@ from .case_data import CaseData
     params=(
         lambda name: CaseData(
             molecule=stk.BuildingBlock(
-                smiles="C1=CC(=CC(=C1)C2=CN=CC=C2)C3=CN=CC=C3",
+                smiles="CCC",
             ),
-            min_value=0.8743,
-            selector=bbprep.selectors.AllSelector(),
-            min_id=0,
+            min_value=104.235,
+            selector=bbprep.selectors.AllNonHSelector(),
+            min_id=6,
+            name=name,
+        ),
+        lambda name: CaseData(
+            molecule=stk.BuildingBlock(
+                smiles="C1=CC(=CC(=C1)C2=CN=CC=C2)C3=CN=CC=C3",
+                functional_groups=stk.SmartsFunctionalGroupFactory(
+                    smarts="[#6]~[#7X2]~[#6]",
+                    bonders=(1,),
+                    deleters=(),
+                ),
+            ),
+            min_value=119.237,
+            selector=bbprep.selectors.XCOMXSelector(),
+            min_id=26,
             name=name,
         ),
     )
