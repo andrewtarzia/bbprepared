@@ -14,6 +14,7 @@ from .case_data import CaseData
             best_id=15,
             selector=bbprep.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6][#7]",
+                selected_indices=(0, 1, 2, 3),
             ),
             generator=bbprep.generators.ETKDG(num_confs=20),
             name=name,
@@ -25,6 +26,7 @@ from .case_data import CaseData
             best_id=3,
             selector=bbprep.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6]=[#8]",
+                selected_indices=(0, 1, 2, 3),
             ),
             generator=bbprep.generators.ETKDG(num_confs=20),
             name=name,
@@ -36,6 +38,7 @@ from .case_data import CaseData
             best_id=3,
             selector=bbprep.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6][#7]",
+                selected_indices=(0, 1, 2, 3),
             ),
             generator=bbprep.generators.TorsionScanner(
                 target_torsions=bbprep.generators.TargetTorsion(
@@ -53,7 +56,8 @@ from .case_data import CaseData
             best_value=-120,
             best_id=6,
             selector=bbprep.selectors.BySmartsSelector(
-                smarts="[#7][#6][#6][#7]",
+                smarts="[#6][#7][#6][#6][#7][#6]",
+                selected_indices=(1, 2, 3, 4),
             ),
             generator=bbprep.generators.TorsionScanner(
                 target_torsions=bbprep.generators.TargetTorsion(

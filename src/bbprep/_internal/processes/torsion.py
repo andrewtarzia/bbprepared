@@ -25,7 +25,12 @@ class TargetTorsion(TargetProcess):
             conformer.molecule
         )
 
-        assert len(atom_positions) == 4
+        try:
+            assert len(atom_positions) == 4
+        except AssertionError:
+            raise AssertionError(
+                f"Selector found {len(atom_positions)} atoms, not 4"
+            )
 
         value = get_dihedral(
             pt1=atom_positions[0],

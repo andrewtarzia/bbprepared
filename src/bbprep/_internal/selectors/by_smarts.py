@@ -10,12 +10,13 @@ class BySmartsSelector(Selector):
 
     """
 
-    def __init__(self, smarts: str):
+    def __init__(self, smarts: str, selected_indices: tuple[int, ...]):
         """
         Initialise Selector.
 
         """
         self._smarts = smarts
+        self._selected_indices = selected_indices
 
     def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
         rdkit_mol = molecule.to_rdkit_mol()
@@ -25,6 +26,7 @@ class BySmartsSelector(Selector):
         )
         atoms = []
         for match in matches:
-            for atom_id in match:
-                atoms.append(atom_id)
+            for idx, atom_id in enumerate(match):
+                if idx in self._selected_indices:
+                    atoms.append(atom_id)
         return tuple(atoms)

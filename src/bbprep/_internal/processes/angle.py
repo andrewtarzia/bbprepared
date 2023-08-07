@@ -26,7 +26,12 @@ class MinimiseAngle(Process):
             conformer.molecule
         )
 
-        assert len(atom_positions) == 3
+        try:
+            assert len(atom_positions) == 3
+        except AssertionError:
+            raise AssertionError(
+                f"Selector found {len(atom_positions)} atoms, not 3"
+            )
 
         vectors = (
             atom_positions[0] - atom_positions[1],

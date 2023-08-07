@@ -49,7 +49,6 @@ class TorsionScanner(Generator):
             mol=molecule,
         )
         ensemble = Ensemble(base_molecule=molecule)
-        molecule.write("temp.mol")
         rdkit_molecule = molecule.to_rdkit_mol()
         rdkit.SanitizeMol(rdkit_molecule)
         rdkit_properties = rdkit.MMFFGetMoleculeProperties(
