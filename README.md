@@ -1,11 +1,11 @@
 # bbprepared
 A general toolkit for working with building blocks for construction of larger molecules.
 
-The library is built off of [`stk`](https://stk.readthedocs.io/en/stable/), which comes with the pip install
+The library is built off of [`stk`](https://stk.readthedocs.io/en/stable/), which comes with the pip install.
 
 # Installation
 
-`bbprepared` is a library. I recommend installing the library with the following instructions.
+`bbprepared` is a `pip` installable library, or can be installed with the following instructions.
 
 The code can be installed following these steps:
 
@@ -37,4 +37,4 @@ $ pip install -e .
 
 # Acknowledgements
 
-This work is a mixture of codes developed throughout my postdoc in the Jelfs Group (), and the Pavan Group (), and during my time as a developer of `stk`` () and `stko` () with Lukas Turcani.
+This work is a mixture of codes developed throughout my postdoc in the [Jelfs Group](http://www.jelfs-group.org/), and the [Pavan Group](https://www.gmpavanlab.com/), and during my time as a developer of [`stk`](https://stk.readthedocs.io/en/stable/) and [`stko`](https://github.com/JelfsMaterialsGroup/stko) with Lukas Turcani.
