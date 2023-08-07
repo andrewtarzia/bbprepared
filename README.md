@@ -33,7 +33,7 @@ $ pip install -e .
 
 # Usage
 
-* To be done.
+* To be completed, but see tests for examples.
 
 # Acknowledgements
 
