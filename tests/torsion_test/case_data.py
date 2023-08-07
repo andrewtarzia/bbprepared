@@ -15,13 +15,15 @@ class CaseData:
         molecule: stk.Molecule,
         generator: bbprep.generators.Generator,
         selector: bbprep.selectors.Selector,
-        min_id: int,
-        min_value: float,
+        target_value: float,
+        best_id: int,
+        best_value: float,
         name: str,
     ) -> None:
         self.molecule = molecule
         self.generator = generator
         self.selector = selector
-        self.min_id = min_id
-        self.min_value = min_value
+        self.target_value = target_value
+        self.best_id = best_id
+        self.best_value = best_value
         self.name = name

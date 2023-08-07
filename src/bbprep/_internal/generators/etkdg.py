@@ -3,8 +3,10 @@ from rdkit.Chem import AllChem as rdkit
 
 from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
 
+from .generator import Generator
 
-class ETKDG:
+
+class ETKDG(Generator):
     """
     Generate conformers as stk molecules with ETKDG__.
 
@@ -25,7 +27,7 @@ class ETKDG:
 
     def generate_conformers(
         self,
-        molecule: stk.Molecule,
+        molecule: stk.BuildingBlock,
     ) -> Ensemble:
         rdkit_molecule = molecule.to_rdkit_mol()
         rdkit_molecule.RemoveAllConformers()

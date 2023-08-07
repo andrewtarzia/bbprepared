@@ -2,12 +2,12 @@ import os
 import pathlib
 
 import numpy as np
-from bbprep import Planarfy
+from bbprep import MinimiseAngle
 
 
-def test_planarfy(molecule):
+def test_minimiseangle(molecule):
     """
-    Test :class:`Planarfy`.
+    Test :class:`MinimiseAngle`.
 
     Parameters:
 
@@ -22,11 +22,11 @@ def test_planarfy(molecule):
 
     ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
-    process = Planarfy(ensemble=ensemble, selector=molecule.selector)
+    process = MinimiseAngle(ensemble=ensemble, selector=molecule.selector)
 
     min_molecule = process.get_minimum()
     path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
-    min_molecule.molecule.write(path / f"planar_{molecule.name}_min.mol")
+    min_molecule.molecule.write(path / f"angle_{molecule.name}_min.mol")
 
     all_scores = process.get_all_scores()
     print(all_scores)
