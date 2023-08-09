@@ -23,16 +23,6 @@ any "tech debt"?
 -->
 
 <!--
-Explain the source code changes. Changes that are fully explained in
-code comments or the above paragraphs don't need to be repeated here.
-Use bullet points, e.g.
-
-* `src/stk/molecular/atoms/atom.py:Atom.get_id()`: The method
-  parameters were updated because <some reason>. The places where
-  the method was called were also updated.
--->
-
-<!--
 Give evidence that the commit works. Did you visually inspect any
 changes to molecular structures yourself?
 -->
