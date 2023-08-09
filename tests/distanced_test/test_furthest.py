@@ -20,8 +20,9 @@ def test_furtherfgs(molecule):
 
     """
 
-    modified = FurthestFGs(molecule.molecule).modify(
-        molecule.desired_functional_groups
+    modified = FurthestFGs().modify(
+        building_block=molecule.molecule,
+        desired_functional_groups=molecule.desired_functional_groups,
     )
     modified_fgs = set(modified.get_functional_groups())
     original_fgs = tuple(molecule.molecule.get_functional_groups())
