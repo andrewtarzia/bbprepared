@@ -7,12 +7,12 @@ class Modifier:
 
     """
 
-    def __init__(self, building_block: stk.BuildingBlock):
+    def __init__(self):
         """
         Initialise the process.
 
         """
-        self._building_block = building_block
+        pass
 
-    def modify(self) -> stk.BuildingBlock:
+    def modify(self, building_block: stk.BuildingBlock) -> stk.BuildingBlock:
         raise NotImplementedError()

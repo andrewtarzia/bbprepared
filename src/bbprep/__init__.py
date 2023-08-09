@@ -5,6 +5,12 @@ from bbprep._internal.modifiers.distanced_functional_groups import (
     FurthestFGs,
 )
 from bbprep._internal.modifiers.modifier import Modifier
+from bbprep._internal.modifiers.reorient_panel import (
+    PanelBuildingBlock,
+    ReorientC1Panel,
+    ReorientC2Panel,
+    ReorientPanel,
+)
 from bbprep._internal.processes.angle import MinimiseAngle
 from bbprep._internal.processes.ditopicfitter import DitopicFitter
 from bbprep._internal.processes.planarfy import Planarfy
@@ -16,6 +22,10 @@ __all__ = [
     "selectors",
     "Ensemble",
     "DitopicFitter",
+    "PanelBuildingBlock",
+    "ReorientPanel",
+    "ReorientC2Panel",
+    "ReorientC1Panel",
     "Conformer",
     "Process",
     "TargetProcess",

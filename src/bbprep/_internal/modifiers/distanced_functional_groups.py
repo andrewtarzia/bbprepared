@@ -12,44 +12,42 @@ class DistancedFGs(Modifier):
 
     """
 
-    def __init__(self, building_block: stk.BuildingBlock):
+    def __init__(self):
         """
         Initialise the process.
 
         """
-        self._building_block = building_block
         self._reverse: bool
 
     def modify(  # type: ignore[override]
         self,
+        building_block: stk.BuildingBlock,
         desired_functional_groups: int,
     ) -> stk.BuildingBlock:
         selected_fgs: list[stk.FunctionalGroup]
         if (
-            self._building_block.get_num_functional_groups()
+            building_block.get_num_functional_groups()
             == desired_functional_groups
         ):
-            return self._building_block.clone()
+            return building_block.clone()
 
         try:
             assert (
-                self._building_block.get_num_functional_groups()
+                building_block.get_num_functional_groups()
                 > desired_functional_groups
             )
         except AssertionError:
             raise AssertionError(
-                f"{self._building_block} has more functional groups than"
+                f"{building_block} has more functional groups than"
                 f" asked for ({desired_functional_groups})."
             )
 
         fg_centroids = [
             (
                 fg,
-                self._building_block.get_centroid(
-                    atom_ids=fg.get_placer_ids()
-                ),
+                building_block.get_centroid(atom_ids=fg.get_placer_ids()),
             )
-            for fg in self._building_block.get_functional_groups()
+            for fg in building_block.get_functional_groups()
         ]
         fg_distances = sorted(
             [
@@ -74,7 +72,7 @@ class DistancedFGs(Modifier):
             if len(selected_fgs) == desired_functional_groups:
                 break
 
-        return self._building_block.with_functional_groups(selected_fgs)
+        return building_block.with_functional_groups(selected_fgs)
 
 
 class FurthestFGs(DistancedFGs):
@@ -83,12 +81,11 @@ class FurthestFGs(DistancedFGs):
 
     """
 
-    def __init__(self, building_block: stk.BuildingBlock):
+    def __init__(self):
         """
         Initialise the process.
 
         """
-        self._building_block = building_block
         self._reverse = True
 
 
@@ -98,10 +95,9 @@ class ClosestFGs(DistancedFGs):
 
     """
 
-    def __init__(self, building_block: stk.BuildingBlock):
+    def __init__(self):
         """
         Initialise the process.
 
         """
-        self._building_block = building_block
         self._reverse = False
