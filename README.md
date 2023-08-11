@@ -5,9 +5,12 @@ The library is built off of [`stk`](https://stk.readthedocs.io/en/stable/), whic
 
 # Installation
 
-`bbprepared` is a `pip` installable library, or can be installed with the following instructions.
+`bbprepared` is a `pip` installable library:
+ ```
+ $ pip install bbprepared
+ ```
 
-The code can be installed following these steps:
+The code can be also installed following these steps:
 
 1. clone `bbprepared` from [here](https://github.com/andrewtarzia/bbprepared)
 
