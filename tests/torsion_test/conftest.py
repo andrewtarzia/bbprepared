@@ -41,10 +41,12 @@ from .case_data import CaseData
                 selected_indices=(0, 1, 2, 3),
             ),
             generator=bbprep.generators.TorsionScanner(
-                target_torsions=bbprep.generators.TargetTorsion(
-                    smarts="[#7][#6][#6][#7]",
-                    expected_num_atoms=4,
-                    torsion_ids=(0, 1, 2, 3),
+                target_torsions=(
+                    bbprep.generators.TargetTorsion(
+                        smarts="[#7][#6][#6][#7]",
+                        expected_num_atoms=4,
+                        torsion_ids=(0, 1, 2, 3),
+                    ),
                 ),
                 angle_range=range(0, 362, 40),
             ),
