@@ -27,7 +27,7 @@ class TorsionScanner(Generator):
 
     def __init__(
         self,
-        target_torsions: TargetTorsion | tuple[TargetTorsion, ...],
+        target_torsions: TargetTorsion | tuple[TargetTorsion],
         angle_range: typing.Iterable[float],
     ):
         """
@@ -37,6 +37,8 @@ class TorsionScanner(Generator):
 
         if not isinstance(target_torsions, tuple):
             self._target_torsions = (target_torsions,)
+        else:
+            self._target_torsions = target_torsions
 
         self._angle_range = angle_range
 

@@ -45,10 +45,12 @@ from .case_data import CaseData
             min_id=41,
             selector=bbprep.selectors.XCOMXSelector(),
             generator=bbprep.generators.TorsionScanner(
-                target_torsions=bbprep.generators.TargetTorsion(
-                    smarts="[#7X2]@[#6X3]@[#6X3H0]-!@[#6X3H0]@[#6X3]",
-                    expected_num_atoms=5,
-                    torsion_ids=(1, 2, 3, 4),
+                target_torsions=(
+                    bbprep.generators.TargetTorsion(
+                        smarts="[#7X2]@[#6X3]@[#6X3H0]-!@[#6X3H0]@[#6X3]",
+                        expected_num_atoms=5,
+                        torsion_ids=(1, 2, 3, 4),
+                    ),
                 ),
                 angle_range=range(0, 362, 40),
             ),
