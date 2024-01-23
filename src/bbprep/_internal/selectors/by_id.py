@@ -4,16 +4,10 @@ from .selector import Selector
 
 
 class ByIdSelector(Selector):
-    """
-    Select atom ids in stk molecules by atom ids.
+    """Select atom ids in stk molecules by atom ids."""
 
-    """
-
-    def __init__(self, ids: tuple[int]):
-        """
-        Initialise Selector.
-
-        """
+    def __init__(self, ids: tuple[int]) -> None:
+        """Initialise Selector."""
         self._ids = ids
 
     def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:

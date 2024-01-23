@@ -1,4 +1,4 @@
-import typing
+from collections import abc
 
 import stk
 
@@ -6,33 +6,34 @@ from .selector import Selector
 
 
 class NotPlacersSelector(Selector):
-    """
-    Select atom ids in stk molecules by placers.
-
-    """
+    """Select atom ids in stk molecules by placers."""
 
     def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
-        assert molecule.get_num_functional_groups() > 0
+        if molecule.get_num_functional_groups() == 0:
+            msg = "Molecule has zero functional groups."
+            raise ValueError(msg)
 
-        atoms = []
-        for fg in molecule.get_functional_groups():
-            placers = tuple(fg.get_placer_ids())  # type: ignore[attr-defined]
-            for id_ in fg.get_atom_ids():  # type: ignore[attr-defined]
-                if id_ not in placers:
-                    atoms.append(id_)
+        atoms = [
+            id_
+            for fg in molecule.get_functional_groups()
+            for id_ in fg.get_atom_ids()
+            if id_ not in tuple(fg.get_placer_ids())  # type: ignore[attr-defined]
+        ]
 
         return tuple(atoms)
 
     def yield_stepwise(
         self,
         molecule: stk.BuildingBlock,
-    ) -> typing.Iterator[tuple[int, ...]]:
-        assert molecule.get_num_functional_groups() > 0
+    ) -> abc.Iterator[tuple[int, ...]]:
+        if molecule.get_num_functional_groups() == 0:
+            msg = "Molecule has zero functional groups."
+            raise ValueError(msg)
 
         for fg in molecule.get_functional_groups():
-            atoms = []
-            placers = tuple(fg.get_placer_ids())  # type: ignore[attr-defined]
-            for id_ in fg.get_atom_ids():  # type: ignore[attr-defined]
-                if id_ not in placers:
-                    atoms.append(id_)
+            atoms = [
+                id_
+                for id_ in fg.get_atom_ids()
+                if id_ not in tuple(fg.get_placer_ids())  # type: ignore[attr-defined]
+            ]
             yield tuple(atoms)
