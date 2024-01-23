@@ -1,11 +1,12 @@
 import pathlib
 
 import numpy as np
-import stk
 from bbprep import Planarfy
 
+from .case_data import CaseData
 
-def test_planarfy(molecule: stk.Molecule) -> None:
+
+def test_planarfy(molecule: CaseData) -> None:
     """Test :class:`Planarfy`.
 
     Parameters:

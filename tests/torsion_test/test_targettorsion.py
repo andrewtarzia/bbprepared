@@ -1,11 +1,12 @@
 import pathlib
 
 import numpy as np
-import stk
 from bbprep import TargetTorsion
 
+from .case_data import CaseData
 
-def test_targettorsion(molecule: stk.Molecule) -> None:
+
+def test_targettorsion(molecule: CaseData) -> None:
     """Test :class:`TargetTorsion`.
 
     Parameters:

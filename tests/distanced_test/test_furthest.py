@@ -3,8 +3,10 @@ import pathlib
 import stk
 from bbprep import FurthestFGs
 
+from .case_data import CaseData
 
-def test_furtherfgs(molecule: stk.Molecule) -> None:
+
+def test_furtherfgs(molecule: CaseData) -> None:
     """Test :class:`FurthestFGs`.
 
     Parameters:

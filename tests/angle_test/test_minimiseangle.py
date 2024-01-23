@@ -1,11 +1,12 @@
 import pathlib
 
 import numpy as np
-import stk
 from bbprep import MinimiseAngle
 
+from .case_data import CaseData
 
-def test_minimiseangle(molecule: stk.Molecule) -> None:
+
+def test_minimiseangle(molecule: CaseData) -> None:
     """Test :class:`MinimiseAngle`.
 
     Parameters:

@@ -1,11 +1,12 @@
 import pathlib
 
 import numpy as np
-import stk
 from bbprep import DitopicFitter
 
+from .case_data import CaseData
 
-def test_ditopicfitter(molecule: stk.Molecule) -> None:
+
+def test_ditopicfitter(molecule: CaseData) -> None:
     """Test :class:`DitopicFitter`.
 
     Parameters:

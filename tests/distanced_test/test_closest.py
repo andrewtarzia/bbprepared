@@ -3,8 +3,10 @@ import pathlib
 import stk
 from bbprep import ClosestFGs
 
+from .case_data import CaseData
 
-def test_closestfgs(molecule: stk.Molecule) -> None:
+
+def test_closestfgs(molecule: CaseData) -> None:
     """Test :class:`ClosestFGs`.
 
     Parameters:

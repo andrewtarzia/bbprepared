@@ -3,8 +3,10 @@ import pathlib
 import numpy as np
 import stk
 
+from .case_data import CaseData
 
-def test_reorientpanel(molecule: stk.Molecule) -> None:
+
+def test_reorientpanel(molecule: CaseData) -> None:
     """Test :class:`ReorientC2Panel` and :class:`ReorientC1Panel`.
 
     Parameters:
