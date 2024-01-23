@@ -45,8 +45,8 @@ from .case_data import CaseData
                     bbprep.generators.TorsionRange(
                         smarts="[#7][#6][#6][#7]",
                         expected_num_atoms=4,
-                        torsion_ids=(0, 1, 2, 3),
-                        torsion_range=range(0, 362, 40),
+                        scanned_ids=(0, 1, 2, 3),
+                        scanned_range=range(0, 362, 40),
                     ),
                 ),
             ),

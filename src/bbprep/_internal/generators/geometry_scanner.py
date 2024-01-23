@@ -18,7 +18,7 @@ class GeometryScanner(Generator):
         target_ranges: BondRange
         | AngleRange
         | TorsionRange
-        | tuple[BondRange, AngleRange, TorsionRange],
+        | tuple[BondRange | AngleRange | TorsionRange],
     ) -> None:
         """Initialise generator."""
         if not isinstance(target_ranges, tuple):
