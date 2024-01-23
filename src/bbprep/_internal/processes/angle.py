@@ -8,10 +8,7 @@ from .utilities import angle_between
 
 
 class MinimiseAngle(Process):
-    """
-    Get the molecule with the min/max of a target angle.
-
-    """
+    """Get the molecule with the min/max of a target angle."""
 
     def _run_process(
         self,
@@ -26,12 +23,10 @@ class MinimiseAngle(Process):
             conformer.molecule
         )
 
-        try:
-            assert len(atom_positions) == 3
-        except AssertionError:
-            raise AssertionError(
-                f"Selector found {len(atom_positions)} atoms, not 3"
-            )
+        expected = 3
+        if len(atom_positions) != expected:
+            msg = f"Selector found {len(atom_positions)} atoms, not 3"
+            raise RuntimeError(msg)
 
         vectors = (
             atom_positions[0] - atom_positions[1],

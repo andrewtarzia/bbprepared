@@ -1,9 +1,15 @@
 import numpy as np
+import numpy.typing as npt
 
 
-def angle_between(v1, v2, normal=None):
-    """
-    Returns the angle in radians between vectors 'v1' and 'v2'::
+def angle_between(
+    v1: npt.NDArray[np.float64],
+    v2: npt.NDArray[np.float64],
+    normal: npt.NDArray[np.float64] | None = None,
+) -> float:
+    """Returns the angle in radians between vectors 'v1' and 'v2'.
+
+    Defined as ::
 
         >>> angle_between((1, 0, 0), (0, 1, 0))
         1.5707963267948966
@@ -20,7 +26,6 @@ def angle_between(v1, v2, normal=None):
     cross product of the two vectors.
 
     """
-
     v1_u = unit_vector(v1)
     v2_u = unit_vector(v2)
     angle = np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
@@ -33,9 +38,8 @@ def angle_between(v1, v2, normal=None):
     return angle
 
 
-def unit_vector(vector):
-    """
-    Returns the unit vector of the vector.
+def unit_vector(vector: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
+    """Returns the unit vector of the vector.
 
     https://stackoverflow.com/questions/2827393/
     angles-between-two-n-dimensional-vectors-in-python/
@@ -45,9 +49,13 @@ def unit_vector(vector):
     return vector / np.linalg.norm(vector)
 
 
-def get_dihedral(pt1, pt2, pt3, pt4):
-    """
-    Calculate the dihedral between four points.
+def get_dihedral(
+    pt1: npt.NDArray[np.float64],
+    pt2: npt.NDArray[np.float64],
+    pt3: npt.NDArray[np.float64],
+    pt4: npt.NDArray[np.float64],
+) -> float:
+    """Calculate the dihedral between four points.
 
     Uses Praxeolitic formula --> 1 sqrt, 1 cross product
     Output in range (-pi to pi).
@@ -57,7 +65,6 @@ def get_dihedral(pt1, pt2, pt3, pt4):
     (new_dihedral(p))
 
     """
-
     p0 = np.asarray(pt1)
     p1 = np.asarray(pt2)
     p2 = np.asarray(pt3)
