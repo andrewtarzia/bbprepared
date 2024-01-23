@@ -20,9 +20,12 @@ bbprep.generators
       :template: class.rst
       :nosignatures:
    
+      AngleRange
+      BondRange
       ETKDG
       Generator
-      TargetTorsion
+      GeometryScanner
+      TorsionRange
       TorsionScanner
    
    

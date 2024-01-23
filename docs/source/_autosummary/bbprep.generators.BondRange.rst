@@ -1,9 +1,9 @@
-bbprep.generators.TargetTorsion
-===============================
+bbprep.generators.BondRange
+===========================
 
 .. currentmodule:: bbprep.generators
 
-.. autoclass:: TargetTorsion
+.. autoclass:: BondRange
    :members:
 
    
@@ -22,8 +22,9 @@ bbprep.generators.TargetTorsion
 
    .. autosummary::
    
-      ~TargetTorsion.smarts
-      ~TargetTorsion.expected_num_atoms
-      ~TargetTorsion.torsion_ids
+      ~BondRange.smarts
+      ~BondRange.expected_num_atoms
+      ~BondRange.scanned_ids
+      ~BondRange.scanned_range
    
    
