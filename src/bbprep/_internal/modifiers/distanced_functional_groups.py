@@ -1,4 +1,4 @@
-import itertools
+import itertools as it
 
 import numpy as np
 import stk
@@ -45,7 +45,7 @@ class DistancedFGs(Modifier):
         fg_distances = sorted(
             [
                 (i[0], j[0], np.linalg.norm(i[1] - j[1]))
-                for i, j in itertools.combinations(fg_centroids, 2)
+                for i, j in it.combinations(fg_centroids, 2)
             ],
             key=lambda x: x[2],
             reverse=self._reverse,
