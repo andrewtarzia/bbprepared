@@ -1,4 +1,7 @@
+import pathlib
+
 import numpy as np
+import numpy.typing as npt
 import stk
 from stk._internal.topology_graphs.utilities import _FunctionalGroupSorter
 from stk._internal.utilities.utilities import (
@@ -10,13 +13,17 @@ from .modifier import Modifier
 
 
 class PanelBuildingBlock(stk.BuildingBlock):
-    def get_bonders(self):
+    def get_bonders(self) -> dict[int, int]:
         return {
-            i: tuple(fg.get_bonder_ids())[0]
+            i: next(iter(fg.get_bonder_ids()))  # type: ignore[attr-defined]
             for i, fg in enumerate(self.get_functional_groups())
         }
 
-    def show_long_axis(self, long_axis, path):
+    def show_long_axis(
+        self,
+        long_axis: npt.NDArray[np.float64],
+        path: pathlib.Path,
+    ) -> None:
         string = stk.XyzWriter().to_string(self)
 
         # Long axis is along y direction.
@@ -24,29 +31,31 @@ class PanelBuildingBlock(stk.BuildingBlock):
         y_pos = [0, long_axis[1]]
         z_pos = [0, long_axis[2]]
 
-        for x, y, z in zip(x_pos, y_pos, z_pos):
+        for x, y, z in zip(x_pos, y_pos, z_pos, strict=False):
             string += f"Ar {x} {y} {z}\n"
 
-        string = string.split("\n")
-        string[0] = str(int(string[0]) + len(x_pos))
-        string = "\n".join(string)
+        stringlist = string.split("\n")
+        stringlist[0] = str(int(stringlist[0]) + len(x_pos))
+        string = "\n".join(stringlist)
 
-        with open(path, "w") as f:
+        with path.open("w") as f:
             f.write(string)
 
-    def get_long_axis(self):
+    def get_long_axis(self) -> npt.NDArray[np.float64]:
         atom_ids = self.get_bonders()
-        if len(atom_ids) != 4:
-            raise ValueError(f"{self} has too many functional groups.")
+        expected = 4
+        if len(atom_ids) != expected:
+            msg = f"{self} has too many functional groups."
+            raise RuntimeError(msg)
 
         sorted_fg_ids = list(_FunctionalGroupSorter(self).get_items())
-        long_axis = None
-        max_pair_distance = 0
+
+        max_pair_distance = 0.0
         for i, fg_id in enumerate(sorted_fg_ids):
             id1_centroid = self.get_centroid(
                 atom_ids=(atom_ids[fg_id]),
             )
-            if i != 3:
+            if i != 3:  # noqa: PLR2004
                 id2_centroid = self.get_centroid(
                     atom_ids=(atom_ids[sorted_fg_ids[i + 1]]),
                 )
@@ -55,23 +64,29 @@ class PanelBuildingBlock(stk.BuildingBlock):
                     atom_ids=(atom_ids[sorted_fg_ids[0]]),
                 )
             pair_axis = id1_centroid - id2_centroid
-            pair_distance = np.linalg.norm(pair_axis)
+            pair_distance = float(np.linalg.norm(pair_axis))
             if pair_distance > max_pair_distance:
                 long_axis = pair_axis.copy()
                 max_pair_distance = pair_distance
 
         return long_axis
 
-    def get_concave_direction(self):
+    def get_concave_direction(self) -> npt.NDArray[np.float64]:
         atom_ids = self.get_bonders()
-        if len(atom_ids) != 4:
-            raise ValueError(f"{self} has too many functional groups.")
+        expected = 4
+        if len(atom_ids) != expected:
+            msg = f"{self} has too many functional groups."
+            raise RuntimeError(msg)
 
         sorted_fg_ids = list(_FunctionalGroupSorter(self).get_items())
         pair_list = list(
-            zip(sorted_fg_ids, sorted_fg_ids[1:] + sorted_fg_ids[:1])
+            zip(
+                sorted_fg_ids,
+                sorted_fg_ids[1:] + sorted_fg_ids[:1],
+                strict=False,
+            )
         )
-        max_pair_distance = 0
+        max_pair_distance = 0.0
         for fg_id1, fg_id2 in pair_list:
             id1_centroid = self.get_centroid(
                 atom_ids=(atom_ids[fg_id1]),
@@ -80,7 +95,7 @@ class PanelBuildingBlock(stk.BuildingBlock):
                 atom_ids=(atom_ids[fg_id2]),
             )
             pair_axis = id1_centroid - id2_centroid
-            pair_distance = np.linalg.norm(pair_axis)
+            pair_distance = float(np.linalg.norm(pair_axis))
             if pair_distance > max_pair_distance:
                 max_pair_distance = pair_distance
                 long_axis_centroid = np.divide(id1_centroid + id2_centroid, 2)
@@ -100,8 +115,7 @@ class PanelBuildingBlock(stk.BuildingBlock):
                             id4_centroid + id3_centroid, 2
                         )
 
-        concave_direction = short_axis_centroid - long_axis_centroid
-        return concave_direction
+        return short_axis_centroid - long_axis_centroid
 
 
 class ReorientPanel(Modifier):
@@ -116,11 +130,11 @@ class ReorientPanel(Modifier):
             )
             for fg in building_block.get_functional_groups()
         )
-        plus_minus_fg_id = tuple(
+        plus_minus_fg_id = next(
             i
             for i, cent in enumerate(fg_centroids)
             if cent[0] > 0 and cent[1] < 0
-        )[0]
+        )
         fg1_id = plus_minus_fg_id
         fg2_id, fg3_id, fg4_id = tuple(
             i
@@ -128,7 +142,7 @@ class ReorientPanel(Modifier):
             if i != fg1_id
         )
         new_fgs = tuple(building_block.get_functional_groups())
-        building_block = building_block.with_functional_groups(
+        return building_block.with_functional_groups(
             functional_groups=(
                 new_fgs[fg1_id],
                 new_fgs[fg2_id],
@@ -137,26 +151,19 @@ class ReorientPanel(Modifier):
             )
         )
 
-        return building_block
-
 
 class ReorientC2Panel(ReorientPanel):
-    """
-    Modify a building block.
-
-    """
+    """Modify a building block."""
 
     def modify(self, building_block: stk.BuildingBlock) -> PanelBuildingBlock:
         building_block = PanelBuildingBlock.init_from_molecule(
             molecule=building_block,
             functional_groups=building_block.get_functional_groups(),
         )
-        try:
-            assert building_block.get_num_functional_groups() == 4
-        except AssertionError:
-            raise AssertionError(
-                f"{building_block} does not have 4 functional groups."
-            )
+        expected = 4
+        if building_block.get_num_functional_groups() != expected:
+            msg = f"{building_block} does not have 4 functional groups."
+            raise RuntimeError(msg)
 
         target_coords = (
             np.array(
@@ -235,22 +242,17 @@ class ReorientC2Panel(ReorientPanel):
 
 
 class ReorientC1Panel(ReorientPanel):
-    """
-    Modify a building block.
-
-    """
+    """Modify a building block."""
 
     def modify(self, building_block: stk.BuildingBlock) -> PanelBuildingBlock:
         building_block = PanelBuildingBlock.init_from_molecule(
             molecule=building_block,
             functional_groups=building_block.get_functional_groups(),
         )
-        try:
-            assert building_block.get_num_functional_groups() == 4
-        except AssertionError:
-            raise AssertionError(
-                f"{building_block} does not have 4 functional groups."
-            )
+        expected = 4
+        if building_block.get_num_functional_groups() != expected:
+            msg = f"{building_block} does not have 4 functional groups."
+            raise RuntimeError(msg)
 
         target_coords = (
             np.array(
