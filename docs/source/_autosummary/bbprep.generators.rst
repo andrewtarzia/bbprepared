@@ -25,6 +25,7 @@ bbprep.generators
       ETKDG
       Generator
       GeometryScanner
+      SelectorDistanceScanner
       TorsionRange
       TorsionScanner
    

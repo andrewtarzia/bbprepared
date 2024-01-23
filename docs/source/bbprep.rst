@@ -38,6 +38,7 @@ For generating conformer ensembles.
   ETKDG <_autosummary/bbprep.generators.ETKDG>
   TorsionScanner <_autosummary/bbprep.generators.TorsionScanner>
   GeometryScanner <_autosummary/bbprep.generators.GeometryScanner>
+  SelectorDistanceScanner <_autosummary/bbprep.generators.SelectorDistanceScanner>
   BondRange <_autosummary/bbprep.generators.BondRange>
   AngleRange <_autosummary/bbprep.generators.AngleRange>
   TorsionRange <_autosummary/bbprep.generators.TorsionRange>

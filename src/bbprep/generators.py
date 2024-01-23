@@ -2,6 +2,9 @@
 from bbprep._internal.generators.etkdg import ETKDG
 from bbprep._internal.generators.generator import Generator
 from bbprep._internal.generators.geometry_scanner import GeometryScanner
+from bbprep._internal.generators.scanner_by_selector import (
+    SelectorDistanceScanner,
+)
 from bbprep._internal.generators.targets import (
     AngleRange,
     BondRange,
@@ -17,4 +20,5 @@ __all__ = [
     "BondRange",
     "TorsionRange",
     "GeometryScanner",
+    "SelectorDistanceScanner",
 ]

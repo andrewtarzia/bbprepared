@@ -51,6 +51,21 @@ from .case_data import CaseData
             energy_5=(46.815865932187954, 4),
             name=name,
         ),
+        lambda name: CaseData(
+            molecule=stk.BuildingBlock(
+                smiles="C1=CC(=CC(=C1)Br)Br",
+                functional_groups=stk.BromoFactory(deleters=(), bonders=(1,)),
+            ),
+            generator=bbprep.generators.SelectorDistanceScanner(
+                selector=bbprep.selectors.BindersSelector(),
+                scanned_changes=[-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2.0],
+            ),
+            num_confs=9,
+            min_energy=(10.901384927360974, 4),
+            max_energy=(170.8986255707084, 8),
+            energy_5=(10.901384927360974, 4),
+            name=name,
+        ),
     )
 )
 def molecule(request: pytest.FixtureRequest) -> CaseData:
