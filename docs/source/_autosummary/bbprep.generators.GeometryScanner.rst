@@ -5,6 +5,10 @@ bbprep.generators.GeometryScanner
 
 .. autoclass:: GeometryScanner
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

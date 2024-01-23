@@ -5,6 +5,10 @@ bbprep.PanelBuildingBlock
 
 .. autoclass:: PanelBuildingBlock
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

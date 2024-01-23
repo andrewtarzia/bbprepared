@@ -5,6 +5,10 @@ bbprep.generators.TorsionScanner
 
 .. autoclass:: TorsionScanner
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

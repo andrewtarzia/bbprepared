@@ -5,6 +5,10 @@ bbprep.selectors.DeletersSelector
 
 .. autoclass:: DeletersSelector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

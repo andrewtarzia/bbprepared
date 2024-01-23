@@ -5,6 +5,10 @@ bbprep.ReorientC2Panel
 
 .. autoclass:: ReorientC2Panel
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

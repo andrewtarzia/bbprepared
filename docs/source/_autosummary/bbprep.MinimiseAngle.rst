@@ -5,6 +5,10 @@ bbprep.MinimiseAngle
 
 .. autoclass:: MinimiseAngle
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

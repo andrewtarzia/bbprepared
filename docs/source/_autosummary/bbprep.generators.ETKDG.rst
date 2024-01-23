@@ -5,6 +5,10 @@ bbprep.generators.ETKDG
 
 .. autoclass:: ETKDG
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

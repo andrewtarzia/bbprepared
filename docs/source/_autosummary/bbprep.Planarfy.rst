@@ -5,6 +5,10 @@ bbprep.Planarfy
 
 .. autoclass:: Planarfy
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

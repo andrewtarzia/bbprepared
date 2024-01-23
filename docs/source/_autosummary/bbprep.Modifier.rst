@@ -5,6 +5,10 @@ bbprep.Modifier
 
 .. autoclass:: Modifier
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

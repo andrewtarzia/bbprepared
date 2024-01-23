@@ -5,6 +5,10 @@ bbprep.ClosestFGs
 
 .. autoclass:: ClosestFGs
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

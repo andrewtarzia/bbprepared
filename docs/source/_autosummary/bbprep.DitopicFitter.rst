@@ -5,6 +5,10 @@ bbprep.DitopicFitter
 
 .. autoclass:: DitopicFitter
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

@@ -5,6 +5,10 @@ bbprep.selectors.NullSelector
 
 .. autoclass:: NullSelector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

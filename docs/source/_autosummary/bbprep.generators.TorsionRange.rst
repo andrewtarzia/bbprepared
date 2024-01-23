@@ -5,6 +5,10 @@ bbprep.generators.TorsionRange
 
 .. autoclass:: TorsionRange
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

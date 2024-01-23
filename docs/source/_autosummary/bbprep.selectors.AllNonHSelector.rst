@@ -5,6 +5,10 @@ bbprep.selectors.AllNonHSelector
 
 .. autoclass:: AllNonHSelector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

@@ -5,6 +5,10 @@ bbprep.FurthestFGs
 
 .. autoclass:: FurthestFGs
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

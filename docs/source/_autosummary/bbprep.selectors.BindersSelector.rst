@@ -5,6 +5,10 @@ bbprep.selectors.BindersSelector
 
 .. autoclass:: BindersSelector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

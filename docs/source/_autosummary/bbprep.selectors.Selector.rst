@@ -5,6 +5,10 @@ bbprep.selectors.Selector
 
 .. autoclass:: Selector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

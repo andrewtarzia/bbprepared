@@ -5,6 +5,10 @@ bbprep.TargetTorsion
 
 .. autoclass:: TargetTorsion
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

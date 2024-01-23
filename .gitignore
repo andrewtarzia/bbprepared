@@ -160,3 +160,19 @@ cython_debug/
 #.idea/
 
 src/bbprep/_version.py
+
+/dist
+/build
+src/bbprep.egg-info
+/.coverage
+docs/source/_autosummary
+**/__pycache__/
+
+**/.cache
+.mypy_cache
+*.ipynb_checkpoints
+**/.vscode
+
+# Some folders get created by tests.
+docs/build
+

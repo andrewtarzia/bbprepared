@@ -5,6 +5,10 @@ bbprep.Conformer
 
 .. autoclass:: Conformer
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    
@@ -22,6 +26,7 @@ bbprep.Conformer
 
    .. autosummary::
    
+      ~Conformer.permutation
       ~Conformer.source
       ~Conformer.molecule
       ~Conformer.conformer_id

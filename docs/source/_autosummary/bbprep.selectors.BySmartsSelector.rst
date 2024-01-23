@@ -5,6 +5,10 @@ bbprep.selectors.BySmartsSelector
 
 .. autoclass:: BySmartsSelector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

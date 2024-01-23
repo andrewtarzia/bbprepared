@@ -5,6 +5,10 @@ bbprep.selectors.XCOMXSelector
 
 .. autoclass:: XCOMXSelector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

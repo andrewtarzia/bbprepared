@@ -5,6 +5,10 @@ bbprep.TargetProcess
 
 .. autoclass:: TargetProcess
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

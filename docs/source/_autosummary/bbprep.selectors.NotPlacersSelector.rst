@@ -5,6 +5,10 @@ bbprep.selectors.NotPlacersSelector
 
 .. autoclass:: NotPlacersSelector
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

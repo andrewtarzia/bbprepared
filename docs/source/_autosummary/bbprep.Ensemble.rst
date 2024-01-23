@@ -5,6 +5,10 @@ bbprep.Ensemble
 
 .. autoclass:: Ensemble
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

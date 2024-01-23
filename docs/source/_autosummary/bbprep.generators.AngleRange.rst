@@ -5,6 +5,10 @@ bbprep.generators.AngleRange
 
 .. autoclass:: AngleRange
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

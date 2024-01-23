@@ -5,6 +5,10 @@ bbprep.generators.BondRange
 
 .. autoclass:: BondRange
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    

@@ -5,6 +5,10 @@ bbprep.generators.Generator
 
 .. autoclass:: Generator
    :members:
+   :inherited-members:
+   :undoc-members:
+   :show-inheritance:
+
 
    
    
