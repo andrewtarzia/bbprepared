@@ -39,7 +39,9 @@ class TorsionScanner(Generator):
         molecule: stk.BuildingBlock,
     ) -> Ensemble:
         # Optimise the initial ligand structure.
-        molecule = stko.MMFF(ignore_inter_interactions=False).optimize(
+        molecule = stko.MMFF(  # type:ignore[assignment]
+            ignore_inter_interactions=False
+        ).optimize(
             mol=molecule,
         )
         ensemble = Ensemble(base_molecule=molecule)
