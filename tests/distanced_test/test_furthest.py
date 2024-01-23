@@ -1,11 +1,10 @@
-import os
 import pathlib
 
 import stk
 from bbprep import FurthestFGs
 
 
-def test_furtherfgs(molecule):
+def test_furtherfgs(molecule: stk.Molecule) -> None:
     """Test :class:`FurthestFGs`.
 
     Parameters:
@@ -41,6 +40,8 @@ def test_furtherfgs(molecule):
             f"{round(fgpos[2], 2)}"
         )
 
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
-    with open(path / f"dist_{molecule.name}_fur.xyz", "w") as f:
+    path = pathlib.Path(__file__).parent
+    with open(  # noqa: PTH123
+        path / f"dist_{molecule.name}_fur.xyz", "w"
+    ) as f:
         f.write("\n".join(xyz_string))

@@ -1,11 +1,10 @@
-import os
 import pathlib
 
 import stk
 from bbprep import ClosestFGs
 
 
-def test_closestfgs(molecule):
+def test_closestfgs(molecule: stk.Molecule) -> None:
     """Test :class:`ClosestFGs`.
 
     Parameters:
@@ -41,6 +40,8 @@ def test_closestfgs(molecule):
             f"{round(fgpos[2], 2)}"
         )
 
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
-    with open(path / f"dist_{molecule.name}_clo.xyz", "w") as f:
+    path = pathlib.Path(__file__).parent
+    with open(  # noqa: PTH123
+        path / f"dist_{molecule.name}_clo.xyz", "w"
+    ) as f:
         f.write("\n".join(xyz_string))

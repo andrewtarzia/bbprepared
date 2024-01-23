@@ -1,11 +1,10 @@
-import os
 import pathlib
 
 import numpy as np
 import stk
 
 
-def test_reorientpanel(molecule):
+def test_reorientpanel(molecule: stk.Molecule) -> None:
     """Test :class:`ReorientC2Panel` and :class:`ReorientC1Panel`.
 
     Parameters:
@@ -17,7 +16,7 @@ def test_reorientpanel(molecule):
         None : :class:`NoneType`
 
     """
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+    path = pathlib.Path(__file__).parent
     target_coords = (
         np.array(
             (
@@ -33,11 +32,10 @@ def test_reorientpanel(molecule):
     modified = molecule.orientmethod.modify(molecule.molecule)
     modified.write(path / f"panel_{molecule.name}_final.mol")
 
-    fg_positions = []
-    for fg in modified.get_functional_groups():
-        fg_positions.append(
-            modified.get_centroid(atom_ids=fg.get_placer_ids())
-        )
+    fg_positions = [
+        modified.get_centroid(atom_ids=fg.get_placer_ids())
+        for fg in modified.get_functional_groups()
+    ]
 
     # Write out the structure.
     xyz_string = stk.XyzWriter().to_string(molecule.molecule).split("\n")
@@ -50,7 +48,7 @@ def test_reorientpanel(molecule):
         )
         fg_distances.append([np.linalg.norm(i - pos) for i in fg_positions])
 
-    with open(path / f"panel_{molecule.name}.xyz", "w") as f:
+    with open(path / f"panel_{molecule.name}.xyz", "w") as f:  # noqa: PTH123
         f.write("\n".join(xyz_string))
 
     modified_fgs = list(modified.get_functional_groups())

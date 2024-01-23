@@ -1,11 +1,11 @@
-import os
 import pathlib
 
 import numpy as np
+import stk
 from bbprep import TargetTorsion
 
 
-def test_targettorsion(molecule):
+def test_targettorsion(molecule: stk.Molecule) -> None:
     """Test :class:`TargetTorsion`.
 
     Parameters:
@@ -26,7 +26,7 @@ def test_targettorsion(molecule):
     )
 
     best_molecule = process.get_best()
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+    path = pathlib.Path(__file__).parent
     best_molecule.molecule.write(path / f"torsion_{molecule.name}_best.mol")
 
     all_scores = process.get_all_scores()

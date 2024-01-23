@@ -1,11 +1,11 @@
-import os
 import pathlib
 
 import numpy as np
+import stk
 from bbprep import Planarfy
 
 
-def test_planarfy(molecule):
+def test_planarfy(molecule: stk.Molecule) -> None:
     """Test :class:`Planarfy`.
 
     Parameters:
@@ -22,7 +22,7 @@ def test_planarfy(molecule):
     process = Planarfy(ensemble=ensemble, selector=molecule.selector)
 
     min_molecule = process.get_minimum()
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+    path = pathlib.Path(__file__).parent
     min_molecule.molecule.write(path / f"planar_{molecule.name}_min.mol")
 
     all_scores = process.get_all_scores()

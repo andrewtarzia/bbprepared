@@ -1,11 +1,11 @@
-import os
 import pathlib
 
 import numpy as np
+import stk
 from bbprep import DitopicFitter
 
 
-def test_ditopicfitter(molecule):
+def test_ditopicfitter(molecule: stk.Molecule) -> None:
     """Test :class:`DitopicFitter`.
 
     Parameters:
@@ -22,7 +22,7 @@ def test_ditopicfitter(molecule):
     process = DitopicFitter(ensemble=ensemble)
 
     min_molecule = process.get_minimum()
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+    path = pathlib.Path(__file__).parent
     min_molecule.molecule.write(path / f"ditopic_{molecule.name}_min.mol")
 
     all_scores = process.get_all_scores()

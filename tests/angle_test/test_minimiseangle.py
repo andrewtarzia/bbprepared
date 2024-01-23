@@ -1,11 +1,11 @@
-import os
 import pathlib
 
 import numpy as np
+import stk
 from bbprep import MinimiseAngle
 
 
-def test_minimiseangle(molecule):
+def test_minimiseangle(molecule: stk.Molecule) -> None:
     """Test :class:`MinimiseAngle`.
 
     Parameters:
@@ -22,7 +22,7 @@ def test_minimiseangle(molecule):
     process = MinimiseAngle(ensemble=ensemble, selector=molecule.selector)
 
     min_molecule = process.get_minimum()
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+    path = pathlib.Path(__file__).parent
     min_molecule.molecule.write(path / f"angle_{molecule.name}_min.mol")
 
     all_scores = process.get_all_scores()
