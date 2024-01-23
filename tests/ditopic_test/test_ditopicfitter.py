@@ -6,8 +6,7 @@ from bbprep import DitopicFitter
 
 
 def test_ditopicfitter(molecule):
-    """
-    Test :class:`DitopicFitter`.
+    """Test :class:`DitopicFitter`.
 
     Parameters:
 
@@ -15,11 +14,9 @@ def test_ditopicfitter(molecule):
             The molecule to process.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = DitopicFitter(ensemble=ensemble)

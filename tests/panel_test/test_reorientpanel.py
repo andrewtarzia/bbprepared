@@ -6,8 +6,7 @@ import stk
 
 
 def test_reorientpanel(molecule):
-    """
-    Test :class:`ReorientC2Panel` and :class:`ReorientC1Panel`.
+    """Test :class:`ReorientC2Panel` and :class:`ReorientC1Panel`.
 
     Parameters:
 
@@ -15,11 +14,9 @@ def test_reorientpanel(molecule):
             The molecule to modify.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
     target_coords = (
         np.array(

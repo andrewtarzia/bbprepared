@@ -6,8 +6,7 @@ from bbprep import FurthestFGs
 
 
 def test_furtherfgs(molecule):
-    """
-    Test :class:`FurthestFGs`.
+    """Test :class:`FurthestFGs`.
 
     Parameters:
 
@@ -15,11 +14,9 @@ def test_furtherfgs(molecule):
             The molecule to modify.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     modified = FurthestFGs().modify(
         building_block=molecule.molecule,
         desired_functional_groups=molecule.desired_functional_groups,

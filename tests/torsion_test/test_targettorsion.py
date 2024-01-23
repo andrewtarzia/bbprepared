@@ -6,8 +6,7 @@ from bbprep import TargetTorsion
 
 
 def test_targettorsion(molecule):
-    """
-    Test :class:`TargetTorsion`.
+    """Test :class:`TargetTorsion`.
 
     Parameters:
 
@@ -15,11 +14,9 @@ def test_targettorsion(molecule):
             The molecule.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = TargetTorsion(

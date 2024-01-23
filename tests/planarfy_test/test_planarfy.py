@@ -6,8 +6,7 @@ from bbprep import Planarfy
 
 
 def test_planarfy(molecule):
-    """
-    Test :class:`Planarfy`.
+    """Test :class:`Planarfy`.
 
     Parameters:
 
@@ -15,11 +14,9 @@ def test_planarfy(molecule):
             The molecule to planarfy.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = Planarfy(ensemble=ensemble, selector=molecule.selector)

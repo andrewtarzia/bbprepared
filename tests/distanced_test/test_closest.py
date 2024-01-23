@@ -6,8 +6,7 @@ from bbprep import ClosestFGs
 
 
 def test_closestfgs(molecule):
-    """
-    Test :class:`ClosestFGs`.
+    """Test :class:`ClosestFGs`.
 
     Parameters:
 
@@ -15,11 +14,9 @@ def test_closestfgs(molecule):
             The molecule to modify.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     modified = ClosestFGs().modify(
         building_block=molecule.molecule,
         desired_functional_groups=molecule.desired_functional_groups,

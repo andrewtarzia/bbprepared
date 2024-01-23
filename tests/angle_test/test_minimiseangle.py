@@ -6,8 +6,7 @@ from bbprep import MinimiseAngle
 
 
 def test_minimiseangle(molecule):
-    """
-    Test :class:`MinimiseAngle`.
+    """Test :class:`MinimiseAngle`.
 
     Parameters:
 
@@ -15,11 +14,9 @@ def test_minimiseangle(molecule):
             The molecule to planarfy.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = MinimiseAngle(ensemble=ensemble, selector=molecule.selector)

@@ -3,12 +3,7 @@ from bbprep import Modifier
 
 
 class CaseData:
-    """
-    A test case.
-
-    Attributes:
-
-    """
+    """A test case."""
 
     def __init__(
         self,
