@@ -1,4 +1,4 @@
-import typing
+from collections import abc
 
 import stk
 
@@ -7,16 +7,10 @@ from bbprep._internal.selectors.selector import Selector
 
 
 class Process:
-    """
-    Get the molecule with some property.
+    """Get the molecule with some property."""
 
-    """
-
-    def __init__(self, ensemble: Ensemble, selector: Selector):
-        """
-        Initialise the process.
-
-        """
+    def __init__(self, ensemble: Ensemble, selector: Selector) -> None:
+        """Initialise the process."""
         self._data: dict[str, float]
         self._ensemble = ensemble
         self._selector = selector
@@ -27,7 +21,7 @@ class Process:
         conformer: Conformer,
         conformer_id: int,
         value: float,
-    ):
+    ) -> None:
         key = stk.Smiles().get_key(conformer.molecule) + f"__{conformer_id}"
         self._data[key] = value
 
@@ -36,9 +30,9 @@ class Process:
         conformer: Conformer,
         conformer_id: int,
     ) -> float:
-        raise NotImplementedError()
+        raise NotImplementedError
 
-    def get_data(self):
+    def get_data(self) -> dict[str, float]:
         return self._data
 
     def calculate_score(
@@ -48,11 +42,11 @@ class Process:
     ) -> float:
         return self._run_process(conformer, conformer_id)
 
-    def get_all_scores(self) -> typing.Iterable[float]:
-        scores = []
-        for conformer in self._ensemble.yield_conformers():
-            scores.append(self._run_process(conformer, conformer.conformer_id))
-        return scores
+    def get_all_scores(self) -> abc.Iterable[float]:
+        return [
+            self._run_process(conformer, conformer.conformer_id)
+            for conformer in self._ensemble.yield_conformers()
+        ]
 
     def get_minimum(self) -> Conformer:
         minimum_score = 1e24
@@ -60,6 +54,7 @@ class Process:
             molecule=self._ensemble.get_base_molecule().clone(),
             conformer_id=-1,
             source=None,
+            permutation=None,
         )
         for conformer in self._ensemble.yield_conformers():
             score = self._run_process(conformer, conformer.conformer_id)
@@ -69,6 +64,7 @@ class Process:
                     molecule=conformer.molecule.clone(),
                     conformer_id=conformer.conformer_id,
                     source=conformer.source,
+                    permutation=conformer.permutation,
                 )
         return minimum_conformer
 
@@ -84,21 +80,15 @@ class Process:
 
 
 class TargetProcess(Process):
-    """
-    Get the conformer with some target value.
-
-    """
+    """Get the conformer with some target value."""
 
     def __init__(
         self,
         ensemble: Ensemble,
         selector: Selector,
         target_value: float,
-    ):
-        """
-        Initialise the process.
-
-        """
+    ) -> None:
+        """Initialise the process."""
         self._data: dict[str, float]
         self._ensemble = ensemble
         self._selector = selector
@@ -121,16 +111,14 @@ class TargetProcess(Process):
             self._run_process(conformer, conformer_id) - self._target_value
         )
 
-    def get_all_scores(self) -> typing.Iterable[float]:
-        scores = []
-        for conformer in self._ensemble.yield_conformers():
-            scores.append(
-                abs(
-                    self._run_process(conformer, conformer.conformer_id)
-                    - self._target_value
-                )
+    def get_all_scores(self) -> abc.Iterable[float]:
+        return [
+            abs(
+                self._run_process(conformer, conformer.conformer_id)
+                - self._target_value
             )
-        return scores
+            for conformer in self._ensemble.yield_conformers()
+        ]
 
     def get_best(self) -> Conformer:
         best_score = 1e24
@@ -138,6 +126,7 @@ class TargetProcess(Process):
             molecule=self._ensemble.get_base_molecule().clone(),
             conformer_id=-1,
             source=None,
+            permutation=None,
         )
         for conformer in self._ensemble.yield_conformers():
             score = self.calculate_score(conformer, conformer.conformer_id)
@@ -147,6 +136,7 @@ class TargetProcess(Process):
                     molecule=conformer.molecule.clone(),
                     conformer_id=conformer.conformer_id,
                     source=conformer.source,
+                    permutation=conformer.permutation,
                 )
         return best_conformer
 

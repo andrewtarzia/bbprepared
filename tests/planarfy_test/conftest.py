@@ -50,12 +50,12 @@ from .case_data import CaseData
                 ),
             ),
             generator=bbprep.generators.TorsionScanner(
-                target_torsions=bbprep.generators.TargetTorsion(
+                target_torsions=bbprep.generators.TorsionRange(
                     smarts="[#6][#6]-!@[#6][#6]",
                     expected_num_atoms=4,
-                    torsion_ids=(0, 1, 2, 3),
+                    scanned_ids=(0, 1, 2, 3),
+                    scanned_range=range(0, 362, 40),
                 ),
-                angle_range=range(0, 362, 40),
             ),
             selector=bbprep.selectors.AllSelector(),
             min_value=0.419,

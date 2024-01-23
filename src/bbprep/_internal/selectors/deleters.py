@@ -1,4 +1,4 @@
-import typing
+from collections import abc
 
 import stk
 
@@ -6,36 +6,32 @@ from .selector import Selector
 
 
 class DeletersSelector(Selector):
-    """
-    Select atom ids in stk molecules by deleters.
+    """Select atom ids in stk molecules by deleters."""
 
-    """
-
-    def __init__(self):
-        """
-        Initialise Selector.
-
-        """
-        pass
+    def __init__(self) -> None:
+        """Initialise Selector."""
 
     def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
-        assert molecule.get_num_functional_groups() > 0
+        if molecule.get_num_functional_groups() == 0:
+            msg = "Molecule has zero functional groups."
+            raise ValueError(msg)
 
-        atoms = []
-        for fg in molecule.get_functional_groups():
-            for id_ in fg.get_deleter_ids():  # type: ignore[attr-defined]
-                atoms.append(id_)
+        atoms = [
+            id_
+            for fg in molecule.get_functional_groups()
+            for id_ in fg.get_deleter_ids()  # type: ignore[attr-defined]
+        ]
 
         return tuple(atoms)
 
     def yield_stepwise(
         self,
         molecule: stk.BuildingBlock,
-    ) -> typing.Iterator[tuple[int, ...]]:
-        assert molecule.get_num_functional_groups() > 0
+    ) -> abc.Iterator[tuple[int, ...]]:
+        if molecule.get_num_functional_groups() == 0:
+            msg = "Molecule has zero functional groups."
+            raise ValueError(msg)
 
         for fg in molecule.get_functional_groups():
-            atoms = []
-            for id_ in fg.get_deleter_ids():  # type: ignore[attr-defined]
-                atoms.append(id_)
+            atoms = list(fg.get_deleter_ids())  # type: ignore[attr-defined]
             yield tuple(atoms)

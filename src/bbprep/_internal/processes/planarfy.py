@@ -7,10 +7,7 @@ from .process import Process
 
 
 class Planarfy(Process):
-    """
-    Get the most planar molecule in an ensemble.
-
-    """
+    """Get the most planar molecule in an ensemble."""
 
     def _run_process(
         self,

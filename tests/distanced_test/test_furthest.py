@@ -1,13 +1,13 @@
-import os
 import pathlib
 
 import stk
 from bbprep import FurthestFGs
 
+from .case_data import CaseData
 
-def test_furtherfgs(molecule):
-    """
-    Test :class:`FurthestFGs`.
+
+def test_furtherfgs(molecule: CaseData) -> None:
+    """Test :class:`FurthestFGs`.
 
     Parameters:
 
@@ -15,11 +15,9 @@ def test_furtherfgs(molecule):
             The molecule to modify.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     modified = FurthestFGs().modify(
         building_block=molecule.molecule,
         desired_functional_groups=molecule.desired_functional_groups,
@@ -44,6 +42,8 @@ def test_furtherfgs(molecule):
             f"{round(fgpos[2], 2)}"
         )
 
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
-    with open(path / f"dist_{molecule.name}_fur.xyz", "w") as f:
+    path = pathlib.Path(__file__).parent
+    with open(  # noqa: PTH123
+        path / f"dist_{molecule.name}_fur.xyz", "w"
+    ) as f:
         f.write("\n".join(xyz_string))

@@ -1,13 +1,13 @@
-import os
 import pathlib
 
 import numpy as np
 from bbprep import DitopicFitter
 
+from .case_data import CaseData
 
-def test_ditopicfitter(molecule):
-    """
-    Test :class:`DitopicFitter`.
+
+def test_ditopicfitter(molecule: CaseData) -> None:
+    """Test :class:`DitopicFitter`.
 
     Parameters:
 
@@ -15,17 +15,15 @@ def test_ditopicfitter(molecule):
             The molecule to process.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = DitopicFitter(ensemble=ensemble)
 
     min_molecule = process.get_minimum()
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+    path = pathlib.Path(__file__).parent
     min_molecule.molecule.write(path / f"ditopic_{molecule.name}_min.mol")
 
     all_scores = process.get_all_scores()

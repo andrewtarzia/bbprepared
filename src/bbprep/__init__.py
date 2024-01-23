@@ -1,3 +1,4 @@
+"""bbprep package."""
 from bbprep import generators, selectors
 from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
 from bbprep._internal.modifiers.distanced_functional_groups import (

@@ -11,16 +11,10 @@ from .utilities import angle_between
 
 
 class DitopicFitter(Process):
-    """
-    Get the conformer best for binding as ditopic linker.
+    """Get the conformer best for binding as ditopic linker."""
 
-    """
-
-    def __init__(self, ensemble: Ensemble):
-        """
-        Initialise the process.
-
-        """
+    def __init__(self, ensemble: Ensemble) -> None:
+        """Initialise the process."""
         self._data: dict[str, float]
         self._ensemble = ensemble
         self._selector = NullSelector()
@@ -35,28 +29,28 @@ class DitopicFitter(Process):
         if key in self._data:
             return self._data[key]
 
-        try:
-            assert conformer.molecule.get_num_functional_groups() == 2
-        except AssertionError:
-            raise AssertionError(
+        expected = 2
+        if conformer.molecule.get_num_functional_groups() != expected:
+            msg = (
                 f"Found {conformer.molecule.get_num_functional_groups()}"
                 " functional groups, not 2."
             )
+            raise RuntimeError(msg)
 
         notplacers = NotPlacersSelector().yield_stepwise(conformer.molecule)
         binders = BindersSelector().yield_stepwise(conformer.molecule)
 
-        notplacers_centroids = []
-        for pl in notplacers:
-            notplacers_centroids.append(conformer.molecule.get_centroid(pl))
+        notplacers_centroids = [
+            conformer.molecule.get_centroid(pl) for pl in notplacers
+        ]
 
-        binders_centroids = []
-        for pl in binders:
-            binders_centroids.append(conformer.molecule.get_centroid(pl))
+        binders_centroids = [
+            conformer.molecule.get_centroid(pl) for pl in binders
+        ]
 
         vectors = []
-        for i, j in zip(notplacers_centroids, binders_centroids):
-            vectors.append((j - i) / np.linalg.norm((j - i)))
+        for i, j in zip(notplacers_centroids, binders_centroids, strict=False):
+            vectors.append((j - i) / np.linalg.norm(j - i))
 
         value = angle_between(*vectors)
         self._save_to_data(conformer, conformer_id, value)

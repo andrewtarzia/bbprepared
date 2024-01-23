@@ -7,10 +7,7 @@ from .utilities import get_dihedral
 
 
 class TargetTorsion(TargetProcess):
-    """
-    Get the molecule with the closest torsion to the target.
-
-    """
+    """Get the molecule with the closest torsion to the target."""
 
     def _run_process(
         self,
@@ -25,12 +22,10 @@ class TargetTorsion(TargetProcess):
             conformer.molecule
         )
 
-        try:
-            assert len(atom_positions) == 4
-        except AssertionError:
-            raise AssertionError(
-                f"Selector found {len(atom_positions)} atoms, not 4"
-            )
+        expected = 4
+        if len(atom_positions) != expected:
+            msg = f"Selector found {len(atom_positions)} atoms, not 4"
+            raise RuntimeError(msg)
 
         value = get_dihedral(
             pt1=atom_positions[0],

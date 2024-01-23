@@ -1,13 +1,13 @@
-import os
 import pathlib
 
 import numpy as np
 from bbprep import TargetTorsion
 
+from .case_data import CaseData
 
-def test_targettorsion(molecule):
-    """
-    Test :class:`TargetTorsion`.
+
+def test_targettorsion(molecule: CaseData) -> None:
+    """Test :class:`TargetTorsion`.
 
     Parameters:
 
@@ -15,11 +15,9 @@ def test_targettorsion(molecule):
             The molecule.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     ensemble = molecule.generator.generate_conformers(molecule.molecule)
 
     process = TargetTorsion(
@@ -29,7 +27,7 @@ def test_targettorsion(molecule):
     )
 
     best_molecule = process.get_best()
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+    path = pathlib.Path(__file__).parent
     best_molecule.molecule.write(path / f"torsion_{molecule.name}_best.mol")
 
     all_scores = process.get_all_scores()

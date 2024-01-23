@@ -1,13 +1,13 @@
-import os
 import pathlib
 
 import stk
 from bbprep import ClosestFGs
 
+from .case_data import CaseData
 
-def test_closestfgs(molecule):
-    """
-    Test :class:`ClosestFGs`.
+
+def test_closestfgs(molecule: CaseData) -> None:
+    """Test :class:`ClosestFGs`.
 
     Parameters:
 
@@ -15,11 +15,9 @@ def test_closestfgs(molecule):
             The molecule to modify.
 
     Returns:
-
         None : :class:`NoneType`
 
     """
-
     modified = ClosestFGs().modify(
         building_block=molecule.molecule,
         desired_functional_groups=molecule.desired_functional_groups,
@@ -44,6 +42,8 @@ def test_closestfgs(molecule):
             f"{round(fgpos[2], 2)}"
         )
 
-    path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
-    with open(path / f"dist_{molecule.name}_clo.xyz", "w") as f:
+    path = pathlib.Path(__file__).parent
+    with open(  # noqa: PTH123
+        path / f"dist_{molecule.name}_clo.xyz", "w"
+    ) as f:
         f.write("\n".join(xyz_string))

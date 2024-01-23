@@ -1,3 +1,4 @@
+"""selectors package."""
 from bbprep._internal.selectors.all_selector import (
     AllNonHSelector,
     AllSelector,

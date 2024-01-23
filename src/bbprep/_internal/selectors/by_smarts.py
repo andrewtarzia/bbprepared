@@ -1,30 +1,24 @@
-import typing
+from collections import abc
 
 import stk
-from rdkit.Chem import AllChem as rdkit
+from rdkit.Chem import AllChem
 
 from .selector import Selector
 
 
 class BySmartsSelector(Selector):
-    """
-    Select atom ids in stk molecules by smarts string.
+    """Select atom ids in stk molecules by smarts string."""
 
-    """
-
-    def __init__(self, smarts: str, selected_indices: tuple[int, ...]):
-        """
-        Initialise Selector.
-
-        """
+    def __init__(self, smarts: str, selected_indices: tuple[int, ...]) -> None:
+        """Initialise Selector."""
         self._smarts = smarts
         self._selected_indices = selected_indices
 
     def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
         rdkit_mol = molecule.to_rdkit_mol()
-        rdkit.SanitizeMol(rdkit_mol)
+        AllChem.SanitizeMol(rdkit_mol)
         matches = rdkit_mol.GetSubstructMatches(
-            query=rdkit.MolFromSmarts(self._smarts),
+            query=AllChem.MolFromSmarts(self._smarts),
         )
         atoms = []
         for match in matches:
@@ -36,11 +30,11 @@ class BySmartsSelector(Selector):
     def yield_stepwise(
         self,
         molecule: stk.BuildingBlock,
-    ) -> typing.Iterator[tuple[int, ...]]:
+    ) -> abc.Iterator[tuple[int, ...]]:
         rdkit_mol = molecule.to_rdkit_mol()
-        rdkit.SanitizeMol(rdkit_mol)
+        AllChem.SanitizeMol(rdkit_mol)
         matches = rdkit_mol.GetSubstructMatches(
-            query=rdkit.MolFromSmarts(self._smarts),
+            query=AllChem.MolFromSmarts(self._smarts),
         )
         for match in matches:
             atoms = []
