@@ -1,6 +1,4 @@
-import itertools
-from collections import abc
-from dataclasses import dataclass
+import itertools as it
 
 import stk
 import stko
@@ -9,13 +7,7 @@ from rdkit.Chem import AllChem, rdMolTransforms
 from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
 
 from .generator import Generator
-
-
-@dataclass
-class TargetTorsion:
-    smarts: str
-    expected_num_atoms: int
-    torsion_ids: tuple[int, int, int, int]
+from .targets import TorsionRange
 
 
 class TorsionScanner(Generator):
@@ -23,8 +15,7 @@ class TorsionScanner(Generator):
 
     def __init__(
         self,
-        target_torsions: TargetTorsion | tuple[TargetTorsion],
-        angle_range: abc.Iterable[float],
+        target_torsions: TorsionRange | tuple[TorsionRange],
     ) -> None:
         """Initialise generator."""
         if not isinstance(target_torsions, tuple):
@@ -32,12 +23,7 @@ class TorsionScanner(Generator):
         else:
             self._target_torsions = target_torsions
 
-        self._angle_range = angle_range
-
-    def generate_conformers(
-        self,
-        molecule: stk.BuildingBlock,
-    ) -> Ensemble:
+    def generate_conformers(self, molecule: stk.BuildingBlock) -> Ensemble:
         # Optimise the initial ligand structure.
         molecule = stko.MMFF(  # type:ignore[assignment]
             ignore_inter_interactions=False
@@ -61,8 +47,8 @@ class TorsionScanner(Generator):
             for match in matches:
                 if len(match) != target.expected_num_atoms:
                     msg = (
-                        f"{len(match)} not as expected"
-                        f"{target.expected_num_atoms}"
+                        f"{len(match)} not as expected ("
+                        f"{target.expected_num_atoms})"
                     )
                     raise RuntimeError(msg)
 
@@ -72,19 +58,24 @@ class TorsionScanner(Generator):
 
                     initial_torsion = rdMolTransforms.GetDihedralDeg(
                         rdkit_molecule.GetConformer(0),
-                        match[target.torsion_ids[0]],
-                        match[target.torsion_ids[1]],
-                        match[target.torsion_ids[2]],
-                        match[target.torsion_ids[3]],
+                        match[target.scanned_ids[0]],
+                        match[target.scanned_ids[1]],
+                        match[target.scanned_ids[2]],
+                        match[target.scanned_ids[3]],
                     )
-                    key = tuple(match[i] for i in target.torsion_ids)
-                    matched_torsions[key] = initial_torsion
+                    key = tuple(match[i] for i in target.scanned_ids)
+                    matched_torsions[key] = [
+                        round(initial_torsion + angle, 2)
+                        for angle in target.scanned_range
+                    ]
 
         cid = 0
         test_molecule = molecule.clone()
-        for target_angles in itertools.product(
-            self._angle_range, repeat=len(matched_torsions)
-        ):
+        keys, values = zip(*matched_torsions.items(), strict=False)
+        permutations_dicts = [
+            dict(zip(keys, v, strict=False)) for v in it.product(*values)
+        ]
+        for permutation in permutations_dicts:
             rdkit_molecule = test_molecule.to_rdkit_mol()
             AllChem.SanitizeMol(rdkit_molecule)
             rdkit_properties = AllChem.MMFFGetMoleculeProperties(
@@ -94,10 +85,9 @@ class TorsionScanner(Generator):
                 rdkit_molecule,
                 rdkit_properties,
             )
-            for angle, torsion in zip(
-                target_angles, matched_torsions, strict=False
-            ):
-                actual_angle = round(matched_torsions[torsion] + angle, 2)
+            for torsion in permutation:
+                actual_angle = permutation[torsion]
+
                 ff.MMFFAddTorsionConstraint(
                     torsion[0],
                     torsion[1],
@@ -108,6 +98,7 @@ class TorsionScanner(Generator):
                     actual_angle + 0.1,
                     100.0,
                 )
+
             ff.Minimize(maxIts=500)
             pos_mat = rdkit_molecule.GetConformer(-1).GetPositions()
             test_molecule = molecule.with_position_matrix(pos_mat)
