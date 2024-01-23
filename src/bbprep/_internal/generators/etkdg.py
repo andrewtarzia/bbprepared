@@ -1,5 +1,5 @@
 import stk
-from rdkit.Chem import AllChem as rdkit
+from rdkit.Chem import AllChem
 
 from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
 
@@ -7,15 +7,10 @@ from .generator import Generator
 
 
 class ETKDG(Generator):
-    """
-    Generate conformers as stk molecules with :func:`rdkit.ETKDGv2()`.
+    """Generate conformers as stk molecules with :func:`rdkit.ETKDGv2()`."""
 
-
-    """
-
-    def __init__(self, num_confs: int):
-        """
-        Initialise ETKDG generator.
+    def __init__(self, num_confs: int) -> None:
+        """Initialise ETKDG generator.
 
         `v3`:
             New version from DOI: 10.1021/acs.jcim.0c00025
@@ -31,9 +26,9 @@ class ETKDG(Generator):
         rdkit_molecule = molecule.to_rdkit_mol()
         rdkit_molecule.RemoveAllConformers()
 
-        params = rdkit.ETKDGv3()
+        params = AllChem.ETKDGv3()
         params.randomSeed = 1000
-        cids = rdkit.EmbedMultipleConfs(
+        cids = AllChem.EmbedMultipleConfs(
             mol=rdkit_molecule,
             numConfs=self._num_confs,
             params=params,
