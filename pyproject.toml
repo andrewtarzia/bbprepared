@@ -28,10 +28,16 @@ dev = [
   "pytest-lazy-fixture",
   "pytest-cov",
   "twine",
+  "sphinx",
+  "sphinx-copybutton",
+  "build",
+  "twine",
+  "furo",
 ]
 
 [project.urls]
 github = "https://github.com/andrewtarzia/bbprepared"
+documentation = "https://bbprepared.readthedocs.io"
 
 [tool.setuptools_scm]
 write_to = "src/bbprep/_version.py"
