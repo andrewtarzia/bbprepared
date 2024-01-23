@@ -16,9 +16,8 @@ jobs:
           cache: "pip"
       - run: pip install -e '.[dev]'
       - run: python -m build
-      - name: Publish
-        run:
+      - run:
           twine upload
-          -u ${{ secrets.PYPI_USERNAME }}
-          -p ${{ secrets.PYPI_PASSWORD }}
+          -u __token__
+          -p ${{ secrets.PYPI_API_TOKEN }}
           dist/*
