@@ -107,6 +107,7 @@ class TorsionScanner(Generator):
                     molecule=test_molecule,
                     conformer_id=cid,
                     source="torsionscan",
+                    permutation=permutation,
                 ),
             )
             cid += 1

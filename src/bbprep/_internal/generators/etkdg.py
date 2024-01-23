@@ -42,6 +42,7 @@ class ETKDG(Generator):
                     molecule=molecule.with_position_matrix(pos_mat),
                     conformer_id=cid,
                     source="etkdg-v3",
+                    permutation=None,
                 ),
             )
 

@@ -54,6 +54,7 @@ class Process:
             molecule=self._ensemble.get_base_molecule().clone(),
             conformer_id=-1,
             source=None,
+            permutation=None,
         )
         for conformer in self._ensemble.yield_conformers():
             score = self._run_process(conformer, conformer.conformer_id)
@@ -63,6 +64,7 @@ class Process:
                     molecule=conformer.molecule.clone(),
                     conformer_id=conformer.conformer_id,
                     source=conformer.source,
+                    permutation=conformer.permutation,
                 )
         return minimum_conformer
 
@@ -124,6 +126,7 @@ class TargetProcess(Process):
             molecule=self._ensemble.get_base_molecule().clone(),
             conformer_id=-1,
             source=None,
+            permutation=None,
         )
         for conformer in self._ensemble.yield_conformers():
             score = self.calculate_score(conformer, conformer.conformer_id)
@@ -133,6 +136,7 @@ class TargetProcess(Process):
                     molecule=conformer.molecule.clone(),
                     conformer_id=conformer.conformer_id,
                     source=conformer.source,
+                    permutation=conformer.permutation,
                 )
         return best_conformer
 

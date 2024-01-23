@@ -175,6 +175,7 @@ class GeometryScanner(Generator):
                     molecule=test_molecule,
                     conformer_id=cid,
                     source="geomscan",
+                    permutation=permutation,
                 ),
             )
             cid += 1

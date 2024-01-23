@@ -17,6 +17,7 @@ class Conformer:
     molecule: stk.BuildingBlock
     conformer_id: int
     source: str | None = None
+    permutation: dict[tuple[int], float] | None = None
 
 
 class Ensemble:
