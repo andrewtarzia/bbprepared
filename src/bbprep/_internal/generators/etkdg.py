@@ -8,9 +8,8 @@ from .generator import Generator
 
 class ETKDG(Generator):
     """
-    Generate conformers as stk molecules with ETKDG__.
+    Generate conformers as stk molecules with :func:`rdkit.ETKDGv2()`.
 
-    __ rdkit
 
     """
 
