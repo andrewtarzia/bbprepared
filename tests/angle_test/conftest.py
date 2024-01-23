@@ -46,13 +46,39 @@ from .case_data import CaseData
             selector=bbprep.selectors.XCOMXSelector(),
             generator=bbprep.generators.TorsionScanner(
                 target_torsions=(
-                    bbprep.generators.TargetTorsion(
+                    bbprep.generators.TorsionRange(
                         smarts="[#7X2]@[#6X3]@[#6X3H0]-!@[#6X3H0]@[#6X3]",
                         expected_num_atoms=5,
-                        torsion_ids=(1, 2, 3, 4),
+                        scanned_ids=(1, 2, 3, 4),
+                        scanned_range=range(0, 362, 40),
                     ),
                 ),
-                angle_range=range(0, 362, 40),
+            ),
+            name=name,
+        ),
+        # This tests the different scanning approach, should give the same
+        # outcome.
+        lambda name: CaseData(
+            molecule=stk.BuildingBlock(
+                smiles="C1=CC(=CN=C1)C2=CC=C(C=C2)C3=CN=CC=C3",
+                functional_groups=stk.SmartsFunctionalGroupFactory(
+                    smarts="[#6]~[#7X2]~[#6]",
+                    bonders=(1,),
+                    deleters=(),
+                ),
+            ),
+            min_value=149.311,
+            min_id=41,
+            selector=bbprep.selectors.XCOMXSelector(),
+            generator=bbprep.generators.GeometryScanner(
+                target_ranges=(
+                    bbprep.generators.TorsionRange(
+                        smarts="[#7X2]@[#6X3]@[#6X3H0]-!@[#6X3H0]@[#6X3]",
+                        expected_num_atoms=5,
+                        scanned_ids=(1, 2, 3, 4),
+                        scanned_range=range(0, 362, 40),
+                    ),
+                ),
             ),
             name=name,
         ),
