@@ -41,7 +41,6 @@ class SelectorDistanceScanner(Generator):
             rdkit_molecule, mmffVariant="MMFF94s"
         )
 
-        molecule.write("t.xyz")
         selected_ids = self._selector.select_atoms(molecule)
         atom_positions = self._selector.get_atomic_positions(molecule)
 
