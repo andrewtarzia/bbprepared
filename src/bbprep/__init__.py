@@ -1,4 +1,5 @@
 """bbprep package."""
+
 from bbprep import generators, selectors
 from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
 from bbprep._internal.modifiers.distanced_functional_groups import (
@@ -6,6 +7,7 @@ from bbprep._internal.modifiers.distanced_functional_groups import (
     FurthestFGs,
 )
 from bbprep._internal.modifiers.modifier import Modifier
+from bbprep._internal.modifiers.random_functional_groups import RandomFGs
 from bbprep._internal.modifiers.reorient_panel import (
     PanelBuildingBlock,
     ReorientC1Panel,
@@ -36,4 +38,5 @@ __all__ = [
     "Modifier",
     "FurthestFGs",
     "ClosestFGs",
+    "RandomFGs",
 ]

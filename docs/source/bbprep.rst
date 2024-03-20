@@ -90,6 +90,7 @@ For modifying existing conformers to get a particular conformer property.
   Modifier <_autosummary/bbprep.Modifier>
   FurthestFGs <_autosummary/bbprep.FurthestFGs>
   ClosestFGs <_autosummary/bbprep.ClosestFGs>
+  RandomFGs <_autosummary/bbprep.RandomFGs>
   ReorientPanel <_autosummary/bbprep.ReorientPanel>
   ReorientC2Panel <_autosummary/bbprep.ReorientC2Panel>
   ReorientC1Panel <_autosummary/bbprep.ReorientC1Panel>

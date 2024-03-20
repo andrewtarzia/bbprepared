@@ -30,6 +30,7 @@
       PanelBuildingBlock
       Planarfy
       Process
+      RandomFGs
       ReorientC1Panel
       ReorientC2Panel
       ReorientPanel
