@@ -56,14 +56,13 @@ class SelectorDistanceScanner(Generator):
             ]
         }
 
-        cid = 0
         test_molecule = molecule.clone()
         keys, values = zip(*matched_changes.items(), strict=False)
         permutations_dicts = [
             dict(zip(keys, v, strict=False)) for v in it.product(*values)
         ]
 
-        for permutation in permutations_dicts:
+        for cid, permutation in enumerate(permutations_dicts):
             rdkit_molecule = test_molecule.to_rdkit_mol()
             AllChem.SanitizeMol(rdkit_molecule)
             rdkit_properties = AllChem.MMFFGetMoleculeProperties(
@@ -97,6 +96,5 @@ class SelectorDistanceScanner(Generator):
                     permutation=permutation,
                 ),
             )
-            cid += 1
 
         return ensemble

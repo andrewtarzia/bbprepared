@@ -33,9 +33,9 @@ def test_furtherfgs(molecule: CaseData) -> None:
             )
 
     xyz_string = stk.XyzWriter().to_string(molecule.molecule).split("\n")
-    xyz_string[
-        0
-    ] = f"{int(xyz_string[0]) + molecule.desired_functional_groups}"
+    xyz_string[0] = (
+        f"{int(xyz_string[0]) + molecule.desired_functional_groups}"
+    )
     for fgpos in fg_positions:
         xyz_string.append(
             f"He {round(fgpos[0], 2)} {round(fgpos[1], 2)} "
