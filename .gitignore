@@ -165,7 +165,7 @@ src/bbprep/_version.py
 /build
 src/bbprep.egg-info
 /.coverage
-docs/source/_autosummary
+
 **/__pycache__/
 
 **/.cache
