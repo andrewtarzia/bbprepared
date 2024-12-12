@@ -37,6 +37,7 @@ $ pip install -e .
 # Usage
 
 * To be completed, but see tests for examples.
+* See gists for usage: https://gist.github.com/andrewtarzia
 
 # Acknowledgements
 
