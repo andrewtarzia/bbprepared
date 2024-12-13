@@ -1,6 +1,7 @@
-import bbprep
 import pytest
 import stk
+
+import bbprep
 
 from .case_data import CaseData
 

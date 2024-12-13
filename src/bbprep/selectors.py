@@ -13,14 +13,14 @@ from bbprep._internal.selectors.selector import NullSelector, Selector
 from bbprep._internal.selectors.xcomx import XCOMXSelector
 
 __all__ = [
-    "Selector",
-    "NullSelector",
-    "AllSelector",
     "AllNonHSelector",
+    "AllSelector",
     "BindersSelector",
     "ByIdSelector",
     "BySmartsSelector",
     "DeletersSelector",
     "NotPlacersSelector",
+    "NullSelector",
+    "Selector",
     "XCOMXSelector",
 ]
