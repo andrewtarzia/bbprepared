@@ -1,23 +1,11 @@
-.. toctree::
-   :hidden:
-   :caption: bbprepared
-   :maxdepth: 2
+:maintainers:
+  `andrewtarzia <https://github.com/andrewtarzia/>`_
+:documentation: https://bbprepared.readthedocs.io/en/latest/
 
-   bbprep <bbprep>
-
-.. toctree::
-  :hidden:
-  :maxdepth: 2
-  :caption: Modules:
-
-  Modules <modules>
 
 ============
 Introduction
 ============
-
-| GitHub: https://www.github.com/andrewtarzia/bbprepared
-
 
 :mod:`bbprepared` or ``bbprep`` is a toolkit aimed at simplifying the
 preparation of your building blocks for
@@ -49,7 +37,6 @@ Examples
 
 * To be completed, but see tests for examples.
 * See `gists <https://gist.github.com/andrewtarzia>`_ for usage.
-
 
 How To Cite
 ===========
