@@ -35,7 +35,7 @@ To develop with :mod:`bbprepared`, you can clone the repo and use
 Examples
 ========
 
-* To be completed, but see tests for examples.
+* See `Recipes` for usage and the code tests include additional examples.
 * See `gists <https://gist.github.com/andrewtarzia>`_ for usage.
 
 How To Cite
