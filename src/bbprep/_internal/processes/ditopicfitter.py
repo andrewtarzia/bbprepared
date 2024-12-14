@@ -11,7 +11,23 @@ from .utilities import angle_between
 
 
 class DitopicFitter(Process):
-    """Get the conformer best for binding as ditopic linker."""
+    r"""Get the conformer best for binding as ditopic linker.
+
+    The process finds the conformer with the minimum angle between binder-COM
+    vectors::
+
+        |- - - O <-- binder
+        |
+        |
+        |
+        COM
+        |
+        |
+        |
+        |- - - O <-- binder
+
+
+    """
 
     def __init__(self, ensemble: Ensemble) -> None:
         """Initialise the process."""
