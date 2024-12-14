@@ -3,7 +3,13 @@
    :caption: bbprepared
    :maxdepth: 2
 
-   bbprep <bbprep>
+   Generators <generators>
+   Containers <containers>
+   Selectors <selectors>
+   Modifiers <modifiers>
+   Processing ensembles <processes>
+   New building blocks <building_blocks>
+   Recipes <recipes>
 
 .. toctree::
   :hidden:
