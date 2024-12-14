@@ -34,6 +34,7 @@ dev = [
   "build",
   "twine",
   "furo",
+  "moldoc",
 ]
 
 [project.urls]
