@@ -52,6 +52,6 @@
    :template: module.rst
    :recursive:
 
-   bbprep.generators
-   bbprep.selectors
+   generators
+   selectors
 

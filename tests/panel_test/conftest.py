@@ -1,6 +1,7 @@
 import numpy as np
 import pytest
 import stk
+
 from bbprep import ReorientC1Panel, ReorientC2Panel
 
 from .case_data import CaseData

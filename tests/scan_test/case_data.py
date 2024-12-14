@@ -1,5 +1,6 @@
-import bbprep
 import stk
+
+import bbprep
 
 
 class CaseData:

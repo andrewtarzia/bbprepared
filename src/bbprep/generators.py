@@ -14,12 +14,12 @@ from bbprep._internal.generators.targets import (
 from bbprep._internal.generators.torsion_scanner import TorsionScanner
 
 __all__ = [
-    "Generator",
     "ETKDG",
-    "TorsionScanner",
     "AngleRange",
     "BondRange",
-    "TorsionRange",
+    "Generator",
     "GeometryScanner",
     "SelectorDistanceScanner",
+    "TorsionRange",
+    "TorsionScanner",
 ]

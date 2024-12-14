@@ -7,7 +7,7 @@ from .generator import Generator
 
 
 class ETKDG(Generator):
-    """Generate conformers as stk molecules with :func:`rdkit.ETKDGv2()`."""
+    """Generate conformers as stk molecules with :func:`AllChem.ETKDGv3()`."""
 
     def __init__(self, num_confs: int) -> None:
         """Initialise ETKDG generator.

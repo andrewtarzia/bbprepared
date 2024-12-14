@@ -1,10 +1,4 @@
-# Distributed under the terms of the MIT License.
-
-"""Module for ensemble class.
-
-Author: Andrew Tarzia
-
-"""
+"""Module for ensemble class."""
 
 from collections import abc
 from dataclasses import dataclass

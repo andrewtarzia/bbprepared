@@ -1,6 +1,7 @@
 import pathlib
 
 import stk
+
 from bbprep import ClosestFGs
 
 from .case_data import CaseData

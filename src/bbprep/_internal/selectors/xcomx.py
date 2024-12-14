@@ -10,7 +10,7 @@ class XCOMXSelector(Selector):
 
     def select_atoms(
         self,
-        molecule: stk.BuildingBlock,  # noqa: ARG002
+        molecule: stk.BuildingBlock,
     ) -> tuple[int, ...]:
         msg = (
             "This class can only provide positions, because one "
