@@ -1,4 +1,4 @@
-bbprep.TargetProcess
+﻿bbprep.TargetProcess
 ====================
 
 .. currentmodule:: bbprep
@@ -19,7 +19,6 @@ bbprep.TargetProcess
    
       ~TargetProcess.calculate_score
       ~TargetProcess.calculate_value
-      ~TargetProcess.get_all_scores
       ~TargetProcess.get_best
       ~TargetProcess.get_best_id
    
