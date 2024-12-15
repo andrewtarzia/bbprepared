@@ -7,7 +7,7 @@
 Introduction
 ============
 
-:mod:`bbprepared` or ``bbprep`` is a toolkit aimed at simplifying the
+`bbprepared` or ``bbprep`` is a toolkit aimed at simplifying the
 preparation of your building blocks for
 `stk <https://stk.readthedocs.io/en/stable/>`_ construction and analysis.
 
@@ -15,7 +15,7 @@ preparation of your building blocks for
 Installation
 ============
 
-To get :mod:`.bbprepared`, you can install it with pip:
+To get `bbprepared`, you can install it with pip:
 
 .. code-block:: bash
 
@@ -24,7 +24,7 @@ To get :mod:`.bbprepared`, you can install it with pip:
 Developer Setup
 ---------------
 
-To develop with :mod:`bbprepared`, you can clone the repo and use
+To develop with `bbprepared`, you can clone the repo and use
 `just <https://github.com/casey/just>`_ to setup the dev environment:
 
 .. code-block:: bash
