@@ -87,6 +87,7 @@ in the same order over the same ensemble.
         ),
         target_value=180,
     )
+    p1_by_id = process1.get_all_scores_by_id()
 
     # Select the N-C-C-N torsion.
     process2 = bbprep.TargetTorsion(
@@ -97,6 +98,8 @@ in the same order over the same ensemble.
         ),
         target_value=0,
     )
+    p2_by_id = process2.get_all_scores_by_id()
+
 
 Then you can iterate over the ensemble with the selections and compute the
 scores.
@@ -110,14 +113,9 @@ scores.
         source=None,
         permutation=None,
     )
-    for (p1_id, p1score), (p2_id, p2score), conformer in zip(
-        enumerate(process1.get_all_scores()),
-        enumerate(process2.get_all_scores()),
-        ensemble.yield_conformers(),
-        strict=True,
-    ):
-        if p1_id != p2_id:
-            raise RuntimeError
+    for conformer in ensemble.yield_conformers():
+        p1score = p1_by_id[conformer.conformer_id]
+        p2score = p2_by_id[conformer.conformer_id]
         sum_score = p1score + p2score
         if sum_score < best_score:
             best_conformer = bbprep.Conformer(
@@ -131,6 +129,11 @@ scores.
     # Get the best conformer as an stk.BuildingBlock.
     best_bb = best_conformer.molecule
 
+.. testcode:: recipe1-test
+    :hide:
+
+    assert best_score == 0.0007741250555535741
+    assert best_conformer.conformer_id == 33
 
 The desired conformation:
 
@@ -169,6 +172,7 @@ The desired conformation:
         ),
         target_value=180,
     )
+    p1_by_id = process1.get_all_scores_by_id()
 
     # Select the N-C-C-N torsion.
     process2 = bbprep.TargetTorsion(
@@ -179,6 +183,7 @@ The desired conformation:
         ),
         target_value=0,
     )
+    p2_by_id = process2.get_all_scores_by_id()
 
     # Iterate over both selected torsions and merge their scoring function.
     best_score = float("inf")
@@ -188,14 +193,9 @@ The desired conformation:
         source=None,
         permutation=None,
     )
-    for (p1_id, p1score), (p2_id, p2score), conformer in zip(
-        enumerate(process1.get_all_scores()),
-        enumerate(process2.get_all_scores()),
-        ensemble.yield_conformers(),
-        strict=True,
-    ):
-        if p1_id != p2_id:
-            raise RuntimeError
+    for conformer in ensemble.yield_conformers():
+        p1score = p1_by_id[conformer.conformer_id]
+        p2score = p2_by_id[conformer.conformer_id]
         sum_score = p1score + p2score
         if sum_score < best_score:
             best_conformer = bbprep.Conformer(
