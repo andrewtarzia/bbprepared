@@ -23,10 +23,12 @@
       ClosestFGs
       Conformer
       DitopicFitter
+      EnergyCalculator
       Ensemble
       FurthestFGs
       MinimiseAngle
       Modifier
+      Optimiser
       PanelBuildingBlock
       Planarfy
       Process

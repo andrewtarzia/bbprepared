@@ -7,7 +7,7 @@ from bbprep._internal.selectors.selector import Selector
 
 
 class Process:
-    """Get the molecule with some property."""
+    """Get the conformer that minimises some property."""
 
     def __init__(self, ensemble: Ensemble, selector: Selector) -> None:
         """Initialise the process."""
@@ -42,14 +42,26 @@ class Process:
     ) -> float:
         return self._run_process(conformer, conformer_id)
 
+    def calculate_all_scores(self) -> None:
+        for conformer in self._ensemble.yield_conformers():
+            self.calculate_score(conformer, conformer.conformer_id)
+
     def get_all_scores(self) -> abc.Iterable[float]:
         return [
-            self._run_process(conformer, conformer.conformer_id)
+            self.calculate_score(conformer, conformer.conformer_id)
             for conformer in self._ensemble.yield_conformers()
         ]
 
+    def get_all_scores_by_id(self) -> dict[int, float]:
+        return {
+            conformer.conformer_id: self.calculate_score(
+                conformer, conformer.conformer_id
+            )
+            for conformer in self._ensemble.yield_conformers()
+        }
+
     def get_minimum(self) -> Conformer:
-        minimum_score = 1e24
+        minimum_score = float("inf")
         minimum_conformer = Conformer(
             molecule=self._ensemble.get_base_molecule().clone(),
             conformer_id=-1,
@@ -69,7 +81,7 @@ class Process:
         return minimum_conformer
 
     def get_minimum_id(self) -> int:
-        minimum_score = 1e24
+        minimum_score = float("inf")
         minimum_id = -1
         for conformer in self._ensemble.yield_conformers():
             score = self._run_process(conformer, conformer.conformer_id)
@@ -80,7 +92,7 @@ class Process:
 
 
 class TargetProcess(Process):
-    """Get the conformer with some target value."""
+    """Get the conformer closest to some target property."""
 
     def __init__(
         self,
@@ -110,15 +122,6 @@ class TargetProcess(Process):
         return abs(
             self._run_process(conformer, conformer_id) - self._target_value
         )
-
-    def get_all_scores(self) -> abc.Iterable[float]:
-        return [
-            abs(
-                self._run_process(conformer, conformer.conformer_id)
-                - self._target_value
-            )
-            for conformer in self._ensemble.yield_conformers()
-        ]
 
     def get_best(self) -> Conformer:
         best_score = 1e24

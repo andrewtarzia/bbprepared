@@ -55,8 +55,7 @@ def test_reorientpanel(molecule: CaseData) -> None:
 
     modified_fgs = list(modified.get_functional_groups())
     original_fgs = list(molecule.molecule.get_functional_groups())
-    print(modified_fgs)
-    print(original_fgs)
+
     mapping = {}
     for idx, fg in enumerate(modified_fgs):
         old_idx = original_fgs.index(fg)
@@ -64,5 +63,4 @@ def test_reorientpanel(molecule: CaseData) -> None:
     assert mapping == molecule.mapping
 
     # Test that the reassigned functional groups match expectations.
-    print(fg_distances)
     assert tuple(i.index(min(i)) for i in fg_distances) == molecule.fg_reorder

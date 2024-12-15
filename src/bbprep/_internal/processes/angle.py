@@ -1,10 +1,10 @@
 import numpy as np
 import stk
+import stko
 
 from bbprep._internal.ensemble.ensemble import Conformer
 
 from .process import Process
-from .utilities import angle_between
 
 
 class MinimiseAngle(Process):
@@ -32,6 +32,6 @@ class MinimiseAngle(Process):
             atom_positions[0] - atom_positions[1],
             atom_positions[2] - atom_positions[1],
         )
-        value = np.degrees(angle_between(*vectors))
+        value = np.degrees(stko.vector_angle(*vectors))
         self._save_to_data(conformer, conformer_id, value)
         return self._data[key]

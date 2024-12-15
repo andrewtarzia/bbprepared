@@ -1,9 +1,9 @@
 import stk
+import stko
 
 from bbprep._internal.ensemble.ensemble import Conformer
 
 from .process import TargetProcess
-from .utilities import get_dihedral
 
 
 class TargetTorsion(TargetProcess):
@@ -27,7 +27,7 @@ class TargetTorsion(TargetProcess):
             msg = f"Selector found {len(atom_positions)} atoms, not 4"
             raise RuntimeError(msg)
 
-        value = get_dihedral(
+        value = stko.calculate_dihedral(
             pt1=atom_positions[0],
             pt2=atom_positions[1],
             pt3=atom_positions[2],

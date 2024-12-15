@@ -32,14 +32,6 @@ def test_targettorsion(molecule: CaseData) -> None:
     best_molecule.molecule.write(path / f"torsion_{molecule.name}_best.mol")
 
     all_scores = process.get_all_scores()
-    print(all_scores)
-    print(
-        process.get_best_id(),
-        process.calculate_value(
-            best_molecule,
-            molecule.best_id,
-        ),
-    )
 
     assert molecule.best_id == process.get_best_id()
     assert min(all_scores) == process.calculate_score(

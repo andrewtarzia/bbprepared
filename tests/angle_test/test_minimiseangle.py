@@ -28,11 +28,6 @@ def test_minimiseangle(molecule: CaseData) -> None:
     min_molecule.molecule.write(path / f"angle_{molecule.name}_min.mol")
 
     all_scores = process.get_all_scores()
-    print(all_scores)
-    print(
-        process.get_minimum_id(),
-        process.calculate_score(min_molecule, molecule.min_id),
-    )
 
     assert np.isclose(molecule.min_value, min(all_scores), rtol=0, atol=1e-3)
     assert molecule.min_id == process.get_minimum_id()
