@@ -1,5 +1,6 @@
 import numpy as np
 import stk
+import stko
 
 from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
 from bbprep._internal.selectors.binders import BindersSelector
@@ -7,7 +8,6 @@ from bbprep._internal.selectors.notplacers import NotPlacersSelector
 from bbprep._internal.selectors.selector import NullSelector
 
 from .process import Process
-from .utilities import angle_between
 
 
 class DitopicFitter(Process):
@@ -68,6 +68,6 @@ class DitopicFitter(Process):
         for i, j in zip(notplacers_centroids, binders_centroids, strict=False):
             vectors.append((j - i) / np.linalg.norm(j - i))
 
-        value = angle_between(*vectors)
+        value = stko.vector_angle(*vectors)
         self._save_to_data(conformer, conformer_id, value)
         return self._data[key]
