@@ -10,6 +10,16 @@ Containers
   Conformer <_autosummary/bbprep.Conformer>
   Ensemble <_autosummary/bbprep.Ensemble>
 
+You can optimise and calculate energies for the ensemble based on
+``ensembles.py``, using the following classes to contain user-defined methods
+or those in :mod:`stko`
+
+.. toctree::
+  :maxdepth: 1
+
+  EnergyCalculator <_autosummary/bbprep.EnergyCalculator>
+  Optimiser <_autosummary/bbprep.Optimiser>
+
 Example:
 --------
 
