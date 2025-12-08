@@ -48,16 +48,7 @@ If you use ``bbprepared`` please mention the URL
 
   https://github.com/andrewtarzia/bbprepared
 
-Or cite:
-
-  @software{Tarzia_bbprepared_2025,
-    author = {Tarzia, Andrew},
-    month = feb,
-    title = {{bbprepared}},
-    url = {https://github.com/andrewtarzia/bbprepared},
-    version = {0.2.3},
-    year = {2025}
-  }
+Or cite using thr ``CITATION.cff`` file.
 
 
 Acknowledgements
