@@ -4,6 +4,12 @@ from pathlib import Path
 
 import ensembles
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+)
+logger = logging.getLogger(__name__)
+
 
 def main() -> None:
     """Run the example."""
@@ -12,15 +18,11 @@ def main() -> None:
 
     try:
         ensembles.main()
-        logging.info("all examples ran, at least!")
+        logger.info("all examples ran, at least!")
 
     finally:
         os.chdir(init_dir)
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(message)s",
-    )
     main()
