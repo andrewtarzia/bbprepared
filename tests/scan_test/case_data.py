@@ -8,12 +8,12 @@ class CaseData:
 
     def __init__(
         self,
-        molecule: stk.Molecule,
+        molecule: stk.BuildingBlock,
         generator: bbprep.generators.Generator,
         num_confs: int,
-        min_energy: tuple,
-        max_energy: tuple,
-        energy_5: tuple,
+        min_energy: tuple[float, int],
+        max_energy: tuple[float, int],
+        energy_5: tuple[float, int],
         name: str,
     ) -> None:
         self.molecule = molecule

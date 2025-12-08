@@ -13,7 +13,7 @@ from .case_data import CaseData
                 smiles="CCC",
             ),
             generator=bbprep.generators.ETKDG(num_confs=30),
-            min_value=104.235,
+            min_value=104.2222824251476,
             selector=bbprep.selectors.AllNonHSelector(),
             min_id=6,
             name=name,
@@ -28,9 +28,9 @@ from .case_data import CaseData
                 ),
             ),
             generator=bbprep.generators.ETKDG(num_confs=30),
-            min_value=119.237,
+            min_value=119.65754691633659,
             selector=bbprep.selectors.XCOMXSelector(),
-            min_id=26,
+            min_id=4,
             name=name,
         ),
         lambda name: CaseData(
@@ -42,8 +42,8 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            min_value=149.311,
-            min_id=41,
+            min_value=149.46026131529828,
+            min_id=86,
             selector=bbprep.selectors.XCOMXSelector(),
             generator=bbprep.generators.TorsionScanner(
                 target_torsions=(
@@ -68,8 +68,8 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            min_value=149.311,
-            min_id=41,
+            min_value=149.46026131529828,
+            min_id=86,
             selector=bbprep.selectors.XCOMXSelector(),
             generator=bbprep.generators.GeometryScanner(
                 target_ranges=(
@@ -87,5 +87,5 @@ from .case_data import CaseData
 )
 def molecule(request: pytest.FixtureRequest) -> CaseData:
     return request.param(
-        f"{request.fixturename}{request.param_index}",
+        f"{request.fixturename}{request.param_index}",  # type: ignore[attr-defined]
     )

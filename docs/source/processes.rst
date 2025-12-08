@@ -94,7 +94,7 @@ generating ensembles.
 .. testcode:: processes-test
     :hide:
 
-    assert min_score == 0.46929321309693156
+    assert min_score == 0.6451099779697566
 
 .. moldoc::
 

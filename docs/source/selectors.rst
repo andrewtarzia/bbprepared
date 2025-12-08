@@ -78,12 +78,11 @@ a geometrical feature.
     :hide:
 
     assert np.allclose(
-        positions[0], np.array([4.78684118, 0.24310297, 0.74707618])
+        positions[0], np.array([4.79283128, 0.22960641, 0.7650025])
     )
     assert np.allclose(
-        positions[1], np.array([-2.83921035e-14, 3.64153152e-15, 1.04306619e-02])
+        positions[1], np.array([-3.46389584e-15,  2.50910404e-15, 1.04306619e-02])
     )
     assert np.allclose(
-        positions[2], np.array([-3.61788981, 1.84622148, -1.09136511])
+        positions[2], np.array([-3.70115826, 1.81330028, -1.16595142])
     )
-

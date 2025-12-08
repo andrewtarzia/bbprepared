@@ -42,11 +42,11 @@ def test_reorientpanel(molecule: CaseData) -> None:
     # Write out the structure.
     xyz_string = stk.XyzWriter().to_string(molecule.molecule).split("\n")
     xyz_string += stk.XyzWriter().to_string(modified).split("\n")[2:]
-    xyz_string[0] = f"{int(xyz_string[0])*2 + 4}"
+    xyz_string[0] = f"{int(xyz_string[0]) * 2 + 4}"
     fg_distances = []
     for pos in target_coords:
         xyz_string.append(
-            f"He {round(pos[0], 2)} {round(pos[1], 2)} " f"{round(pos[2], 2)}"
+            f"He {round(pos[0], 2)} {round(pos[1], 2)} {round(pos[2], 2)}"
         )
         fg_distances.append([np.linalg.norm(i - pos) for i in fg_positions])
 

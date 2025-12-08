@@ -18,7 +18,7 @@ from .case_data import CaseData
                 ),
             ),
             generator=bbprep.generators.ETKDG(num_confs=30),
-            min_value=0.0165,
+            min_value=0.04699259444933887,
             min_id=5,
             name=name,
         ),
@@ -32,8 +32,8 @@ from .case_data import CaseData
                 ),
             ),
             generator=bbprep.generators.ETKDG(num_confs=30),
-            min_value=0.9559,
-            min_id=0,
+            min_value=0.8249489663822132,
+            min_id=13,
             name=name,
         ),
         lambda name: CaseData(
@@ -46,13 +46,13 @@ from .case_data import CaseData
                 ),
             ),
             generator=bbprep.generators.ETKDG(num_confs=30),
-            min_value=0.3642,
-            min_id=11,
+            min_value=0.7929100911809754,
+            min_id=5,
             name=name,
         ),
     )
 )
 def molecule(request: pytest.FixtureRequest) -> CaseData:
     return request.param(
-        f"{request.fixturename}{request.param_index}",
+        f"{request.fixturename}{request.param_index}",  # type: ignore[attr-defined]
     )

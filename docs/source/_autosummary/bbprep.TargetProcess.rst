@@ -1,4 +1,4 @@
-﻿bbprep.TargetProcess
+bbprep.TargetProcess
 ====================
 
 .. currentmodule:: bbprep

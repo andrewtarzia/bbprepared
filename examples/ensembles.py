@@ -6,6 +6,12 @@ import stko
 
 import bbprep
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s",
+)
+logger = logging.getLogger(__name__)
+
 
 def main() -> None:
     """Run the example."""
@@ -34,14 +40,16 @@ def main() -> None:
     )
 
     generator = bbprep.generators.ETKDG(num_confs=30)
-    ensemble = generator.generate_conformers(polymer)
-    logging.info(ensemble)
+    ensemble = generator.generate_conformers(
+        stk.BuildingBlock.init_from_molecule(polymer)
+    )
+    logger.info(ensemble)
 
     # Get lowest energy without opt.
     lowest_energy_conformer = ensemble.get_lowest_energy_conformer(
         calculator=calculator,
     )
-    logging.info(calculator.function(lowest_energy_conformer.molecule))
+    logger.info(calculator.function(lowest_energy_conformer.molecule))
     lowest_energy_conformer.molecule.write(examples_output / "low_e_1.mol")
 
     # Optimise ensemble.
@@ -53,15 +61,11 @@ def main() -> None:
     lowest_energy_conformer = opt_ensemble.get_lowest_energy_conformer(
         calculator=calculator
     )
-    logging.info(calculator.function(lowest_energy_conformer.molecule))
+    logger.info(calculator.function(lowest_energy_conformer.molecule))
     lowest_energy_conformer.molecule.write(examples_output / "low_e_2.mol")
 
-    logging.info(lowest_energy_conformer)
+    logger.info(lowest_energy_conformer)
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s | %(levelname)s | %(message)s",
-    )
     main()

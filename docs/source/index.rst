@@ -3,13 +3,13 @@
    :caption: bbprepared
    :maxdepth: 2
 
+   Recipes <recipes>
    Generators <generators>
    Containers <containers>
    Selectors <selectors>
    Modifiers <modifiers>
    Processing ensembles <processes>
    New building blocks <building_blocks>
-   Recipes <recipes>
 
 .. toctree::
   :hidden:
@@ -24,6 +24,7 @@ Introduction
 
 | GitHub: https://www.github.com/andrewtarzia/bbprepared
 
+.. figure:: _static/logo.png
 
 :mod:`bbprepared` or ``bbprep`` is a toolkit aimed at simplifying the
 preparation of your building blocks for
@@ -43,11 +44,12 @@ Developer Setup
 ---------------
 
 To develop with :mod:`bbprepared`, you can clone the repo and use
-`just <https://github.com/casey/just>`_ to setup the dev environment:
+`just <https://github.com/casey/just>`_ and `uv <https://docs.astral.sh>`_
+to setup the dev environment:
 
 .. code-block:: bash
 
-  just dev
+  just setup
 
 
 Examples
@@ -64,16 +66,7 @@ If you use ``bbprepared`` please mention the URL
 
   https://github.com/andrewtarzia/bbprepared
 
-Or cite:
-
-  @software{Tarzia_bbprepared_2025,
-    author = {Tarzia, Andrew},
-    month = feb,
-    title = {{bbprepared}},
-    url = {https://github.com/andrewtarzia/bbprepared},
-    version = {0.2.3},
-    year = {2025}
-  }
+Or use the `citation file <https://github.com/andrewtarzia/bbprepared/blob/main/CITATION.cff>`_.
 
 
 
@@ -81,10 +74,9 @@ Acknowledgements
 ================
 
 Funded by the European Union - Next Generation EU, Mission 4 Component 1
-CUP E13C22002930006 and the ERC under projects DYNAPOL.
+CUP E13C22002930006.
 
 This work is a mixture of codes developed throughout my postdoc in the
-`Jelfs Group <http://www.jelfs-group.org/>`_, and the
-`Pavan Group <https://www.gmpavanlab.com/>`_, and during my time as a developer
+`Jelfs Group <http://www.jelfs-group.org/>`_, and during my time as a developer
 of `stk <https://stk.readthedocs.io/en/stable/>`_ and
 `stko <https://github.com/JelfsMaterialsGroup/stko>`_ with Lukas Turcani.

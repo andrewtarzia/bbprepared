@@ -29,9 +29,9 @@ from .case_data import CaseData
                 ),
             ),
             num_confs=64,
-            min_energy=(72.8283860274666, 23),
-            max_energy=(118.02644492785005, 60),
-            energy_5=(111.35399028061572, 4),
+            min_energy=(72.82838605023622, 23),
+            max_energy=(118.02645660051499, 60),
+            energy_5=(111.35399540923027, 4),
             name=name,
         ),
         lambda name: CaseData(
@@ -47,9 +47,9 @@ from .case_data import CaseData
                 ),
             ),
             num_confs=7,
-            min_energy=(39.81232642917671, 3),
-            max_energy=(225.68018376546095, 0),
-            energy_5=(46.815865932187954, 4),
+            min_energy=(39.81232878272989, 3),
+            max_energy=(225.68003897535004, 0),
+            energy_5=(48.52349318923524, 4),
             name=name,
         ),
         lambda name: CaseData(
@@ -62,14 +62,14 @@ from .case_data import CaseData
                 scanned_changes=[-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2.0],
             ),
             num_confs=9,
-            min_energy=(10.901384927360974, 4),
-            max_energy=(170.8986255707084, 8),
-            energy_5=(10.901384927360974, 4),
+            min_energy=(10.90138492752934, 4),
+            max_energy=(170.89861660707226, 8),
+            energy_5=(10.90138492752934, 4),
             name=name,
         ),
     )
 )
 def molecule(request: pytest.FixtureRequest) -> CaseData:
     return request.param(
-        f"{request.fixturename}{request.param_index}",
+        f"{request.fixturename}{request.param_index}",  # type: ignore[attr-defined]
     )

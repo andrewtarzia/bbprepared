@@ -2,9 +2,9 @@
 default:
   @just --list
 
-# Install development environment.
-dev:
-  pip install -e '.[dev]'
+# Do a dev install.
+setup:
+  uv sync --all-extras --dev
 
 # Run code checks.
 check:
@@ -14,29 +14,33 @@ check:
   trap error=1 ERR
 
   echo
-  (set -x; ruff check . )
+  ( set -x; uv run ruff check src tests examples )
 
   echo
-  ( set -x; ruff format --check . )
+  ( set -x; uv run ruff format --check src tests examples )
 
   echo
-  ( set -x; mypy src )
+  ( set -x; uv run mypy src examples tests )
 
   echo
-  ( set -x; pytest --cov=src --cov-report term-missing )
+  ( set -x; uv run pytest --cov=src --cov-report term-missing )
 
   echo
-  ( set -x; make -C docs doctest)
+  ( set -x; uv run make -C docs doctest )
 
   test $error = 0
 
 # Auto-fix code issues.
 fix:
-  ruff format .
-  ruff check --fix .
+  uv run ruff format .
+  uv run ruff check --fix .
+
+# Build a release.
+build:
+  uv build
 
 # Build docs.
 docs:
-  rm -rf ./docs/build docs/source/_autosummary
-  make -C docs html
+  rm -rf docs/source/_autosummary
+  uv run make -C docs html
   echo Docs are in $PWD/docs/build/html/index.html
