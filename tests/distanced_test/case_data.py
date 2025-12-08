@@ -1,3 +1,5 @@
+from collections import abc
+
 import stk
 
 
@@ -6,11 +8,11 @@ class CaseData:
 
     def __init__(
         self,
-        molecule: stk.Molecule,
+        molecule: stk.BuildingBlock,
         desired_functional_groups: int,
-        closest_ids: tuple[int, int],
-        furthest_ids: tuple[int, int],
-        random_ids: dict[int, tuple[int, int]],
+        closest_ids: abc.Sequence[int],
+        furthest_ids: abc.Sequence[int],
+        random_ids: dict[int, abc.Sequence[int]],
         name: str,
     ) -> None:
         self.molecule = molecule

@@ -26,9 +26,9 @@ class ETKDG(Generator):
         rdkit_molecule = molecule.to_rdkit_mol()
         rdkit_molecule.RemoveAllConformers()
 
-        params = AllChem.ETKDGv3()
+        params = AllChem.ETKDGv3()  # type: ignore[attr-defined]
         params.randomSeed = 1000
-        cids = AllChem.EmbedMultipleConfs(
+        cids = AllChem.EmbedMultipleConfs(  # type: ignore[attr-defined]
             mol=rdkit_molecule,
             numConfs=self._num_confs,
             params=params,

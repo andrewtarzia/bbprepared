@@ -16,9 +16,9 @@ class BySmartsSelector(Selector):
 
     def select_atoms(self, molecule: stk.BuildingBlock) -> tuple[int, ...]:
         rdkit_mol = molecule.to_rdkit_mol()
-        AllChem.SanitizeMol(rdkit_mol)
+        AllChem.SanitizeMol(rdkit_mol)  # type: ignore[attr-defined]
         matches = rdkit_mol.GetSubstructMatches(
-            query=AllChem.MolFromSmarts(self._smarts),
+            query=AllChem.MolFromSmarts(self._smarts),  # type: ignore[attr-defined]
         )
         atoms = []
         for match in matches:
@@ -32,9 +32,9 @@ class BySmartsSelector(Selector):
         molecule: stk.BuildingBlock,
     ) -> abc.Iterator[tuple[int, ...]]:
         rdkit_mol = molecule.to_rdkit_mol()
-        AllChem.SanitizeMol(rdkit_mol)
+        AllChem.SanitizeMol(rdkit_mol)  # type: ignore[attr-defined]
         matches = rdkit_mol.GetSubstructMatches(
-            query=AllChem.MolFromSmarts(self._smarts),
+            query=AllChem.MolFromSmarts(self._smarts),  # type: ignore[attr-defined]
         )
         for match in matches:
             atoms = []

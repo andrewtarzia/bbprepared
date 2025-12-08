@@ -8,7 +8,7 @@ class CaseData:
 
     def __init__(
         self,
-        molecule: stk.Molecule,
+        molecule: stk.BuildingBlock,
         orientmethod: Modifier,
         fg_reorder: tuple[int, int, int, int],
         mapping: dict[int, int],

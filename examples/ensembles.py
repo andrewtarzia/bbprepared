@@ -40,7 +40,9 @@ def main() -> None:
     )
 
     generator = bbprep.generators.ETKDG(num_confs=30)
-    ensemble = generator.generate_conformers(polymer)
+    ensemble = generator.generate_conformers(
+        stk.BuildingBlock.init_from_molecule(polymer)
+    )
     logger.info(ensemble)
 
     # Get lowest energy without opt.

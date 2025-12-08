@@ -1,4 +1,5 @@
 import itertools as it
+from collections import abc
 
 import stk
 import stko
@@ -15,16 +16,14 @@ class GeometryScanner(Generator):
 
     def __init__(
         self,
-        target_ranges: BondRange
-        | AngleRange
-        | TorsionRange
-        | tuple[BondRange | AngleRange | TorsionRange],
+        target_ranges: abc.Sequence[BondRange | AngleRange | TorsionRange],
     ) -> None:
         """Initialise generator."""
         if not isinstance(target_ranges, tuple):
-            self._target_ranges = (target_ranges,)
-        else:
-            self._target_ranges = target_ranges
+            msg = "`target_ranges` should be tuple."
+            raise TypeError(msg)
+
+        self._target_ranges = target_ranges
 
     def generate_conformers(  # noqa: C901, PLR0912
         self,
@@ -38,8 +37,8 @@ class GeometryScanner(Generator):
         )
         ensemble = Ensemble(base_molecule=molecule)
         rdkit_molecule = molecule.to_rdkit_mol()
-        AllChem.SanitizeMol(rdkit_molecule)
-        rdkit_properties = AllChem.MMFFGetMoleculeProperties(
+        AllChem.SanitizeMol(rdkit_molecule)  # type: ignore[attr-defined]
+        rdkit_properties = AllChem.MMFFGetMoleculeProperties(  # type: ignore[attr-defined]
             rdkit_molecule, mmffVariant="MMFF94s"
         )
 
@@ -49,7 +48,7 @@ class GeometryScanner(Generator):
         atoms_to_be_constrained_torsions = set()
         for target in self._target_ranges:
             matches = rdkit_molecule.GetSubstructMatches(
-                query=AllChem.MolFromSmarts(target.smarts),
+                query=AllChem.MolFromSmarts(target.smarts),  # type: ignore[attr-defined]
             )
 
             for match in matches:
@@ -119,11 +118,11 @@ class GeometryScanner(Generator):
 
         for cid, permutation in enumerate(permutations_dicts):
             rdkit_molecule = test_molecule.to_rdkit_mol()
-            AllChem.SanitizeMol(rdkit_molecule)
-            rdkit_properties = AllChem.MMFFGetMoleculeProperties(
+            AllChem.SanitizeMol(rdkit_molecule)  # type: ignore[attr-defined]
+            rdkit_properties = AllChem.MMFFGetMoleculeProperties(  # type: ignore[attr-defined]
                 rdkit_molecule
             )
-            ff = AllChem.MMFFGetMoleculeForceField(
+            ff = AllChem.MMFFGetMoleculeForceField(  # type: ignore[attr-defined]
                 rdkit_molecule,
                 rdkit_properties,
             )

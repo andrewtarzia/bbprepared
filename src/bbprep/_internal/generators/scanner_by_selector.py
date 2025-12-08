@@ -36,8 +36,8 @@ class SelectorDistanceScanner(Generator):
         )
         ensemble = Ensemble(base_molecule=molecule)
         rdkit_molecule = molecule.to_rdkit_mol()
-        AllChem.SanitizeMol(rdkit_molecule)
-        rdkit_properties = AllChem.MMFFGetMoleculeProperties(
+        AllChem.SanitizeMol(rdkit_molecule)  # type: ignore[attr-defined]
+        rdkit_properties = AllChem.MMFFGetMoleculeProperties(  # type: ignore[attr-defined]
             rdkit_molecule, mmffVariant="MMFF94s"
         )
 
@@ -64,11 +64,11 @@ class SelectorDistanceScanner(Generator):
 
         for cid, permutation in enumerate(permutations_dicts):
             rdkit_molecule = test_molecule.to_rdkit_mol()
-            AllChem.SanitizeMol(rdkit_molecule)
-            rdkit_properties = AllChem.MMFFGetMoleculeProperties(
+            AllChem.SanitizeMol(rdkit_molecule)  # type: ignore[attr-defined]
+            rdkit_properties = AllChem.MMFFGetMoleculeProperties(  # type: ignore[attr-defined]
                 rdkit_molecule
             )
-            ff = AllChem.MMFFGetMoleculeForceField(
+            ff = AllChem.MMFFGetMoleculeForceField(  # type: ignore[attr-defined]
                 rdkit_molecule,
                 rdkit_properties,
             )

@@ -1,6 +1,5 @@
 """Module for ensemble class."""
 
-import typing
 from collections import abc
 from dataclasses import dataclass
 
@@ -59,7 +58,7 @@ class Ensemble:
     def get_molecule_num_atoms(self) -> int:
         return self._molecule_num_atoms
 
-    def optimise_conformers(self, optimiser: Optimiser) -> typing.Self:
+    def optimise_conformers(self, optimiser: Optimiser) -> "Ensemble":
         """Get a new ensemble with optimised conformers."""
         new_ensemble = Ensemble(base_molecule=self._base_molecule)
         for conformer in self.yield_conformers():
@@ -67,7 +66,7 @@ class Ensemble:
                 conformer=Conformer(
                     molecule=optimiser.function(conformer.molecule),
                     conformer_id=conformer.conformer_id,
-                    source=conformer.source + f":{optimiser.name}",
+                    source=f"{conformer.source}:{optimiser.name}",
                     permutation=None,
                 )
             )

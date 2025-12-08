@@ -8,7 +8,7 @@ class CaseData:
 
     def __init__(
         self,
-        molecule: stk.Molecule,
+        molecule: stk.BuildingBlock,
         generator: bbprep.generators.Generator,
         selector: bbprep.selectors.Selector,
         target_value: float,

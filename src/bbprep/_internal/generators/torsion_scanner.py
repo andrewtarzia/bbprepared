@@ -32,8 +32,8 @@ class TorsionScanner(Generator):
         )
         ensemble = Ensemble(base_molecule=molecule)
         rdkit_molecule = molecule.to_rdkit_mol()
-        AllChem.SanitizeMol(rdkit_molecule)
-        rdkit_properties = AllChem.MMFFGetMoleculeProperties(
+        AllChem.SanitizeMol(rdkit_molecule)  # type: ignore[attr-defined]
+        rdkit_properties = AllChem.MMFFGetMoleculeProperties(  # type: ignore[attr-defined]
             rdkit_molecule, mmffVariant="MMFF94s"
         )
 
@@ -41,7 +41,7 @@ class TorsionScanner(Generator):
         atoms_to_be_constrained = set()
         for target in self._target_torsions:
             matches = rdkit_molecule.GetSubstructMatches(
-                query=AllChem.MolFromSmarts(target.smarts),
+                query=AllChem.MolFromSmarts(target.smarts),  # type: ignore[attr-defined]
             )
 
             for match in matches:
@@ -76,11 +76,11 @@ class TorsionScanner(Generator):
         ]
         for cid, permutation in enumerate(permutations_dicts):
             rdkit_molecule = test_molecule.to_rdkit_mol()
-            AllChem.SanitizeMol(rdkit_molecule)
-            rdkit_properties = AllChem.MMFFGetMoleculeProperties(
+            AllChem.SanitizeMol(rdkit_molecule)  # type: ignore[attr-defined]
+            rdkit_properties = AllChem.MMFFGetMoleculeProperties(  # type: ignore[attr-defined]
                 rdkit_molecule
             )
-            ff = AllChem.MMFFGetMoleculeForceField(
+            ff = AllChem.MMFFGetMoleculeForceField(  # type: ignore[attr-defined]
                 rdkit_molecule,
                 rdkit_properties,
             )
