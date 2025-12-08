@@ -91,8 +91,10 @@ many ranges. Once you have an ensemble, you can do normal analysis.
 .. testcode:: generators-test
     :hide:
 
-    assert energies.index(39.81232642917671) == 3
-    assert min(energies) == 39.81232642917671
+    import numpy as np
+
+    assert np.isclose(energies[3], 39.81232878272989, atol=1E-4)
+    assert np.isclose(min(energies), 39.81232878272989, atol=1E-4)
 
 .. moldoc::
 

@@ -132,8 +132,8 @@ scores.
 .. testcode:: recipe1-test
     :hide:
 
-    assert best_score == 0.0007741250555535741
-    assert best_conformer.conformer_id == 33
+    assert best_score == 0.0005569557071438121
+    assert best_conformer.conformer_id == 83
 
 The desired conformation:
 

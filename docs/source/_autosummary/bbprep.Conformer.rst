@@ -27,6 +27,7 @@ bbprep.Conformer
    .. autosummary::
    
       ~Conformer.permutation
+      ~Conformer.score
       ~Conformer.source
       ~Conformer.molecule
       ~Conformer.conformer_id
