@@ -33,33 +33,37 @@ energy :class:`bbprep.Conformer`.
     )
 
 Note that you could couple this with any energy function, especially those
-provided in :mod:`stko`.
+provided in :mod:`stko`. And in the new verstion, it is a one-liner!
 
 .. testcode:: recipe2-test
 
-    # Iterate over ensemble.
-    minimum_score = 1e24
-    minimum_conformer = bbprep.Conformer(
-        molecule=ensemble.get_base_molecule().clone(),
-        conformer_id=-1,
-        source=None,
-        permutation=None,
+    calculator = bbprep.EnergyCalculator(
+        name="MMFFEnergy",
+        function=stko.MMFFEnergy().get_energy,
     )
-    for conformer in ensemble.yield_conformers():
-        # Something here to calculate energy.
-        score = stko.MMFFEnergy().get_energy(conformer.molecule)
-        if score < minimum_score:
-            minimum_score = score
-            minimum_conformer = bbprep.Conformer(
-                molecule=conformer.molecule.clone(),
-                conformer_id=conformer.conformer_id,
-                source=conformer.source,
-                permutation=conformer.permutation,
-            )
+
+    # Iterate over ensemble without optimisation.
+    minimum_conformer = ensemble.get_lowest_energy_conformer(
+        calculator=calculator,
+    )
+    minimum_score_no_opt = minimum_conformer.score
+
+    # With optimisation...
+    optimiser = bbprep.Optimiser(
+        name="MMFF",
+        function=stko.MMFF().optimize,
+    )
+    new_ensemble = ensemble.optimise_conformers(
+        optimiser=optimiser,
+    )
+    minimum_conformer = new_ensemble.get_lowest_energy_conformer(
+        calculator=calculator,
+    )
+    minimum_score_opt = minimum_conformer.score
 
 .. testcode:: recipe2-test
     :hide:
 
-    assert minimum_score == 43.2237165419001
-    assert minimum_conformer.conformer_id == 34
-
+    assert minimum_score_no_opt == 44.139049720694786
+    assert minimum_score_opt == 39.52500653652586
+    assert minimum_conformer.conformer_id == 55
