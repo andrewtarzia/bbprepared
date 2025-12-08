@@ -12,7 +12,7 @@ from .case_data import CaseData
             molecule=stk.BuildingBlock(smiles="C1=CC=NC(=C1)C2=CC=CC=N2"),
             target_value=180,
             best_value=180,
-            best_id=15,
+            best_id=12,
             selector=bbprep.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6][#7]",
                 selected_indices=(0, 1, 2, 3),
@@ -24,7 +24,7 @@ from .case_data import CaseData
             molecule=stk.BuildingBlock(smiles="C[C@@H](C(=O)O)N"),
             target_value=0,
             best_value=0,
-            best_id=3,
+            best_id=5,
             selector=bbprep.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6]=[#8]",
                 selected_indices=(0, 1, 2, 3),
