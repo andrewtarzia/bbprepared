@@ -51,6 +51,7 @@ where = [
 
 [tool.ruff]
 line-length = 79
+extend-exclude = ["src/bbprep/_version.py"]
 
 [tool.ruff.lint]
 select = ["ALL"]
