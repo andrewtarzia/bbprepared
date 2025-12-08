@@ -15,6 +15,7 @@ class Conformer:
     conformer_id: int
     source: str | None = None
     permutation: dict[tuple[int], float] | None = None
+    score: int | float | None = None
 
 
 class Ensemble:
@@ -73,7 +74,8 @@ class Ensemble:
         return new_ensemble
 
     def get_lowest_energy_conformer(
-        self, calculator: EnergyCalculator
+        self,
+        calculator: EnergyCalculator,
     ) -> Conformer:
         """Get the lowest energy conformer based on a calculator.
 
@@ -90,13 +92,13 @@ class Ensemble:
                     conformer_id=conformer.conformer_id,
                     source=conformer.source,
                     permutation=None,
+                    score=energy,
                 )
         return lowest_energy_conformer
 
     def __str__(self) -> str:
         return (
-            f"{self.__class__.__name__}("
-            f"num_confs={self.get_num_conformers()})"
+            f"{self.__class__.__name__}(num_confs={self.get_num_conformers()})"
         )
 
     def __repr__(self) -> str:
