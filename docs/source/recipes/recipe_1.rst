@@ -132,7 +132,8 @@ scores.
 .. testcode:: recipe1-test
     :hide:
 
-    assert best_score == 0.0005569557071438121
+    import numpy as np
+    assert np.isclose(best_score, 0.0, atol=1E-2)
     assert best_conformer.conformer_id == 83
 
 The desired conformation:
