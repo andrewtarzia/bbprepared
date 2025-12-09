@@ -57,6 +57,7 @@ Examples
 
 * See `Recipes` for usage and the code tests include additional examples.
 * See `gists <https://gist.github.com/andrewtarzia>`_ for usage.
+* In particular `this tutorial <https://gist.github.com/andrewtarzia/23e7843365bad76277322e207d95e627>`_
 
 
 How To Cite
