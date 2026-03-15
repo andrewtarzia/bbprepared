@@ -160,10 +160,12 @@ cython_debug/
 #.idea/
 
 src/bbprep/_version.py
+src/bbprepared/_version.py
 
 /dist
 /build
 src/bbprep.egg-info
+src/bbprepared.egg-info
 /.coverage
 
 **/__pycache__/

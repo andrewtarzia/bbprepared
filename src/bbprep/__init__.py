@@ -1,5 +1,7 @@
 """bbprep package."""
 
+import warnings
+
 from bbprep import generators, selectors
 from bbprep._internal.ensemble.calculators import EnergyCalculator, Optimiser
 from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
@@ -20,6 +22,13 @@ from bbprep._internal.processes.ditopicfitter import DitopicFitter
 from bbprep._internal.processes.planarfy import Planarfy
 from bbprep._internal.processes.process import Process, TargetProcess
 from bbprep._internal.processes.torsion import TargetTorsion
+
+warnings.warn(
+    "using `import bbprep` will be deprecated on 16th of June 2026. "
+    "Please use `import bbprepared`",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
 __all__ = [
     "ClosestFGs",
