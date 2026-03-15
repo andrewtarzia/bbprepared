@@ -1,7 +1,7 @@
 import pytest
 import stk
 
-import bbprep
+import bbprepared
 
 from .case_data import CaseData
 
@@ -12,9 +12,9 @@ from .case_data import CaseData
             molecule=stk.BuildingBlock(
                 smiles="CCC",
             ),
-            generator=bbprep.generators.ETKDG(num_confs=30),
+            generator=bbprepared.generators.ETKDG(num_confs=30),
             min_value=104.2222824251476,
-            selector=bbprep.selectors.AllNonHSelector(),
+            selector=bbprepared.selectors.AllNonHSelector(),
             min_id=6,
             name=name,
         ),
@@ -27,9 +27,9 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            generator=bbprep.generators.ETKDG(num_confs=30),
+            generator=bbprepared.generators.ETKDG(num_confs=30),
             min_value=119.65754691633659,
-            selector=bbprep.selectors.XCOMXSelector(),
+            selector=bbprepared.selectors.XCOMXSelector(),
             min_id=4,
             name=name,
         ),
@@ -44,10 +44,10 @@ from .case_data import CaseData
             ),
             min_value=149.46026131529828,
             min_id=86,
-            selector=bbprep.selectors.XCOMXSelector(),
-            generator=bbprep.generators.TorsionScanner(
+            selector=bbprepared.selectors.XCOMXSelector(),
+            generator=bbprepared.generators.TorsionScanner(
                 target_torsions=(
-                    bbprep.generators.TorsionRange(
+                    bbprepared.generators.TorsionRange(
                         smarts="[#7X2]@[#6X3]@[#6X3H0]-!@[#6X3H0]@[#6X3]",
                         expected_num_atoms=5,
                         scanned_ids=(1, 2, 3, 4),
@@ -70,10 +70,10 @@ from .case_data import CaseData
             ),
             min_value=149.46026131529828,
             min_id=86,
-            selector=bbprep.selectors.XCOMXSelector(),
-            generator=bbprep.generators.GeometryScanner(
+            selector=bbprepared.selectors.XCOMXSelector(),
+            generator=bbprepared.generators.GeometryScanner(
                 target_ranges=(
-                    bbprep.generators.TorsionRange(
+                    bbprepared.generators.TorsionRange(
                         smarts="[#7X2]@[#6X3]@[#6X3H0]-!@[#6X3H0]@[#6X3]",
                         expected_num_atoms=5,
                         scanned_ids=(1, 2, 3, 4),

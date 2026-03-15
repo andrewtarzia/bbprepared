@@ -7,4 +7,4 @@ inherit or contain the ``stk`` class, depending on design considerations.
 .. toctree::
   :maxdepth: 1
 
-  PanelBuildingBlock <_autosummary/bbprep.PanelBuildingBlock>
+  PanelBuildingBlock <_autosummary/bbprepared.PanelBuildingBlock>

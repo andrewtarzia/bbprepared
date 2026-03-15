@@ -7,12 +7,12 @@ property.
 .. toctree::
   :maxdepth: 1
 
-  Process (to target the minimum) <_autosummary/bbprep.Process>
-  TargetProcess (for a specific target value) <_autosummary/bbprep.TargetProcess>
-  MinimiseAngle <_autosummary/bbprep.MinimiseAngle>
-  DitopicFitter <_autosummary/bbprep.DitopicFitter>
-  Planarfy <_autosummary/bbprep.Planarfy>
-  TargetTorsion <_autosummary/bbprep.TargetTorsion>
+  Process (to target the minimum) <_autosummary/bbprepared.Process>
+  TargetProcess (for a specific target value) <_autosummary/bbprepared.TargetProcess>
+  MinimiseAngle <_autosummary/bbprepared.MinimiseAngle>
+  DitopicFitter <_autosummary/bbprepared.DitopicFitter>
+  Planarfy <_autosummary/bbprepared.Planarfy>
+  TargetTorsion <_autosummary/bbprepared.TargetTorsion>
 
 
 Example:
@@ -24,7 +24,7 @@ plane-of-best-fit through desired atoms.
 .. testcode:: processes-test
 
     import stk
-    import bbprep
+    import bbprepared
 
     bb = stk.BuildingBlock(
         smiles=(
@@ -69,10 +69,10 @@ generating ensembles.
 
 .. testcode:: processes-test
 
-    selector = bbprep.selectors.AllSelector()
+    selector = bbprepared.selectors.AllSelector()
     # This is not the cheapest approach, but works well in this case!
-    generator = bbprep.generators.TorsionScanner(
-        target_torsions=bbprep.generators.TorsionRange(
+    generator = bbprepared.generators.TorsionScanner(
+        target_torsions=bbprepared.generators.TorsionRange(
             smarts="[#6][#6]-!@[#6][#6]",
             expected_num_atoms=4,
             scanned_ids=(0, 1, 2, 3),
@@ -80,9 +80,9 @@ generating ensembles.
         ),
     )
     ensemble = generator.generate_conformers(bb)
-    process = bbprep.Planarfy(ensemble=ensemble, selector=selector)
+    process = bbprepared.Planarfy(ensemble=ensemble, selector=selector)
 
-    # Get the minimum bbprep.Conformer.
+    # Get the minimum bbprepared.Conformer.
     min_molecule = process.get_minimum()
 
     # Can access the stk molecule using:
@@ -100,16 +100,16 @@ generating ensembles.
 
     import moldoc.molecule as molecule
     import stk
-    import bbprep
+    import bbprepared
 
     bb = stk.BuildingBlock(
         smiles=(
             "C1=CC=C2C=C(C=CC2=C1)C3=CC(=CC=C3)C4=CC=CC5=CC=CC=C54"
         ),
     )
-    selector = bbprep.selectors.AllSelector()
-    generator = bbprep.generators.TorsionScanner(
-        target_torsions=bbprep.generators.TorsionRange(
+    selector = bbprepared.selectors.AllSelector()
+    generator = bbprepared.generators.TorsionScanner(
+        target_torsions=bbprepared.generators.TorsionRange(
             smarts="[#6][#6]-!@[#6][#6]",
             expected_num_atoms=4,
             scanned_ids=(0, 1, 2, 3),
@@ -117,9 +117,9 @@ generating ensembles.
         ),
     )
     ensemble = generator.generate_conformers(bb)
-    process = bbprep.Planarfy(ensemble=ensemble, selector=selector)
+    process = bbprepared.Planarfy(ensemble=ensemble, selector=selector)
 
-    # Get the minimum bbprep.Conformer.
+    # Get the minimum bbprepared.Conformer.
     min_molecule = process.get_minimum()
 
     moldoc_display_molecule = molecule.Molecule(

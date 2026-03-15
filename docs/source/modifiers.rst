@@ -7,13 +7,13 @@ clones, to get a particular property.
 .. toctree::
   :maxdepth: 1
 
-  Modifier <_autosummary/bbprep.Modifier>
-  FurthestFGs <_autosummary/bbprep.FurthestFGs>
-  ClosestFGs <_autosummary/bbprep.ClosestFGs>
-  RandomFGs <_autosummary/bbprep.RandomFGs>
-  ReorientPanel <_autosummary/bbprep.ReorientPanel>
-  ReorientC2Panel <_autosummary/bbprep.ReorientC2Panel>
-  ReorientC1Panel <_autosummary/bbprep.ReorientC1Panel>
+  Modifier <_autosummary/bbprepared.Modifier>
+  FurthestFGs <_autosummary/bbprepared.FurthestFGs>
+  ClosestFGs <_autosummary/bbprepared.ClosestFGs>
+  RandomFGs <_autosummary/bbprepared.RandomFGs>
+  ReorientPanel <_autosummary/bbprepared.ReorientPanel>
+  ReorientC2Panel <_autosummary/bbprepared.ReorientC2Panel>
+  ReorientC1Panel <_autosummary/bbprepared.ReorientC1Panel>
 
 
 Example:
@@ -61,7 +61,7 @@ Here, we have 3 ``C-N-C`` groups, but want the furthest 2.
 .. testcode:: modifiers-test
 
     import stk
-    import bbprep
+    import bbprepared
 
     bb = stk.BuildingBlock(
         smiles="C1=CC(=CN=C1)C2=NC=C(C=C2)C3=CC=NC=C3",
@@ -71,7 +71,7 @@ Here, we have 3 ``C-N-C`` groups, but want the furthest 2.
             deleters=(),
         ),
     )
-    modified = bbprep.FurthestFGs().modify(
+    modified = bbprepared.FurthestFGs().modify(
         building_block=bb,
         desired_functional_groups=2,
     )

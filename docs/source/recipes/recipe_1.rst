@@ -50,7 +50,7 @@ I do not want.
 .. testcode:: recipe1-test
 
     import stk
-    import bbprep
+    import bbprepared
 
     building_block = stk.BuildingBlock(
         smiles="C1=CC=NC(=C1)C=NBr",
@@ -68,7 +68,7 @@ I do not want.
         ],
     )
 
-    ensemble = bbprep.generators.ETKDG(num_confs=100).generate_conformers(
+    ensemble = bbprepared.generators.ETKDG(num_confs=100).generate_conformers(
         building_block
     )
 
@@ -79,9 +79,9 @@ in the same order over the same ensemble.
 .. testcode:: recipe1-test
 
     # Select the C-C-N-Br torsion.
-    process1 = bbprep.TargetTorsion(
+    process1 = bbprepared.TargetTorsion(
         ensemble=ensemble,
-        selector=bbprep.selectors.BySmartsSelector(
+        selector=bbprepared.selectors.BySmartsSelector(
             smarts="[#6]~[#6]~[#7]~[#35]",
             selected_indices=(0, 1, 2, 3),
         ),
@@ -90,9 +90,9 @@ in the same order over the same ensemble.
     p1_by_id = process1.get_all_scores_by_id()
 
     # Select the N-C-C-N torsion.
-    process2 = bbprep.TargetTorsion(
+    process2 = bbprepared.TargetTorsion(
         ensemble=ensemble,
-        selector=bbprep.selectors.BySmartsSelector(
+        selector=bbprepared.selectors.BySmartsSelector(
             smarts="[#7]~[#6]~[#6]~[#7]",
             selected_indices=(0, 1, 2, 3),
         ),
@@ -107,7 +107,7 @@ scores.
 .. testcode:: recipe1-test
 
     best_score = float("inf")
-    best_conformer = bbprep.Conformer(
+    best_conformer = bbprepared.Conformer(
         molecule=ensemble.get_base_molecule().clone(),
         conformer_id=-1,
         source=None,
@@ -118,7 +118,7 @@ scores.
         p2score = p2_by_id[conformer.conformer_id]
         sum_score = p1score + p2score
         if sum_score < best_score:
-            best_conformer = bbprep.Conformer(
+            best_conformer = bbprepared.Conformer(
                 molecule=conformer.molecule.clone(),
                 conformer_id=conformer.conformer_id,
                 source=conformer.source,
@@ -142,7 +142,7 @@ The desired conformation:
 
     import moldoc.molecule as molecule
     import stk
-    import bbprep
+    import bbprepared
 
     building_block = stk.BuildingBlock(
         smiles="C1=CC=NC(=C1)C=NBr",
@@ -160,14 +160,14 @@ The desired conformation:
         ],
     )
 
-    ensemble = bbprep.generators.ETKDG(num_confs=100).generate_conformers(
+    ensemble = bbprepared.generators.ETKDG(num_confs=100).generate_conformers(
         building_block
     )
 
     # Select the C-C-N-Br torsion.
-    process1 = bbprep.TargetTorsion(
+    process1 = bbprepared.TargetTorsion(
         ensemble=ensemble,
-        selector=bbprep.selectors.BySmartsSelector(
+        selector=bbprepared.selectors.BySmartsSelector(
             smarts="[#6]~[#6]~[#7]~[#35]",
             selected_indices=(0, 1, 2, 3),
         ),
@@ -176,9 +176,9 @@ The desired conformation:
     p1_by_id = process1.get_all_scores_by_id()
 
     # Select the N-C-C-N torsion.
-    process2 = bbprep.TargetTorsion(
+    process2 = bbprepared.TargetTorsion(
         ensemble=ensemble,
-        selector=bbprep.selectors.BySmartsSelector(
+        selector=bbprepared.selectors.BySmartsSelector(
             smarts="[#7]~[#6]~[#6]~[#7]",
             selected_indices=(0, 1, 2, 3),
         ),
@@ -188,7 +188,7 @@ The desired conformation:
 
     # Iterate over both selected torsions and merge their scoring function.
     best_score = float("inf")
-    best_conformer = bbprep.Conformer(
+    best_conformer = bbprepared.Conformer(
         molecule=ensemble.get_base_molecule().clone(),
         conformer_id=-1,
         source=None,
@@ -199,7 +199,7 @@ The desired conformation:
         p2score = p2_by_id[conformer.conformer_id]
         sum_score = p1score + p2score
         if sum_score < best_score:
-            best_conformer = bbprep.Conformer(
+            best_conformer = bbprepared.Conformer(
                 molecule=conformer.molecule.clone(),
                 conformer_id=conformer.conformer_id,
                 source=conformer.source,

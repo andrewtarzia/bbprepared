@@ -8,11 +8,11 @@ or torsion scans.
 .. toctree::
   :maxdepth: 1
 
-  Generator <_autosummary/bbprep.generators.Generator>
-  ETKDG <_autosummary/bbprep.generators.ETKDG>
-  TorsionScanner <_autosummary/bbprep.generators.TorsionScanner>
-  GeometryScanner <_autosummary/bbprep.generators.GeometryScanner>
-  SelectorDistanceScanner <_autosummary/bbprep.generators.SelectorDistanceScanner>
+  Generator <_autosummary/bbprepared.generators.Generator>
+  ETKDG <_autosummary/bbprepared.generators.ETKDG>
+  TorsionScanner <_autosummary/bbprepared.generators.TorsionScanner>
+  GeometryScanner <_autosummary/bbprepared.generators.GeometryScanner>
+  SelectorDistanceScanner <_autosummary/bbprepared.generators.SelectorDistanceScanner>
 
 
 Example:
@@ -24,15 +24,15 @@ ensembles along specific collective variables:
 .. toctree::
   :maxdepth: 1
 
-  BondRange <_autosummary/bbprep.generators.BondRange>
-  AngleRange <_autosummary/bbprep.generators.AngleRange>
-  TorsionRange <_autosummary/bbprep.generators.TorsionRange>
+  BondRange <_autosummary/bbprepared.generators.BondRange>
+  AngleRange <_autosummary/bbprepared.generators.AngleRange>
+  TorsionRange <_autosummary/bbprepared.generators.TorsionRange>
 
 
 .. testcode:: generators-test
 
     import stk
-    import bbprep
+    import bbprepared
     import stko
 
     bb = stk.BuildingBlock(smiles="C1=CC=C(C=C1)C2=CC=CC=C2")
@@ -70,9 +70,9 @@ many ranges. Once you have an ensemble, you can do normal analysis.
 
 .. testcode:: generators-test
 
-    generator = bbprep.generators.GeometryScanner(
+    generator = bbprepared.generators.GeometryScanner(
         target_ranges=(
-            bbprep.generators.BondRange(
+            bbprepared.generators.BondRange(
                 smarts="[#6X3H0]-!@[#6X3H0]",
                 expected_num_atoms=2,
                 scanned_ids=(0, 1),
@@ -100,13 +100,13 @@ many ranges. Once you have an ensemble, you can do normal analysis.
 
     import moldoc.molecule as molecule
     import stk
-    import bbprep
+    import bbprepared
 
     bb = stk.BuildingBlock(smiles="C1=CC=C(C=C1)C2=CC=CC=C2")
 
-    generator = bbprep.generators.GeometryScanner(
+    generator = bbprepared.generators.GeometryScanner(
         target_ranges=(
-            bbprep.generators.BondRange(
+            bbprepared.generators.BondRange(
                 smarts="[#6X3H0]-!@[#6X3H0]",
                 expected_num_atoms=2,
                 scanned_ids=(0, 1),

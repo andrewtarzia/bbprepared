@@ -2,14 +2,14 @@ Getting the lowest energy conformer.
 ====================================
 
 This is a simple script for iterating over an ensemble and getting the lowest
-energy :class:`bbprep.Conformer`.
+energy :class:`bbprepared.Conformer`.
 
 
 .. testcode:: recipe2-test
 
     import stk
     import stko
-    import bbprep
+    import bbprepared
 
     building_block = stk.BuildingBlock(
         smiles="C1=CC=NC(=C1)C=NBr",
@@ -28,7 +28,7 @@ energy :class:`bbprep.Conformer`.
     )
 
     # This uses the rdkit conformer generation.
-    ensemble = bbprep.generators.ETKDG(num_confs=100).generate_conformers(
+    ensemble = bbprepared.generators.ETKDG(num_confs=100).generate_conformers(
         building_block
     )
 
@@ -37,7 +37,7 @@ provided in :mod:`stko`. And in the new verstion, it is a one-liner!
 
 .. testcode:: recipe2-test
 
-    calculator = bbprep.EnergyCalculator(
+    calculator = bbprepared.EnergyCalculator(
         name="MMFFEnergy",
         function=stko.MMFFEnergy().get_energy,
     )
@@ -49,7 +49,7 @@ provided in :mod:`stko`. And in the new verstion, it is a one-liner!
     minimum_score_no_opt = minimum_conformer.score
 
     # With optimisation...
-    optimiser = bbprep.Optimiser(
+    optimiser = bbprepared.Optimiser(
         name="MMFF",
         function=stko.MMFF().optimize,
     )

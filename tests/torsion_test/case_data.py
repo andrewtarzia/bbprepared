@@ -1,6 +1,6 @@
 import stk
 
-import bbprep
+import bbprepared
 
 
 class CaseData:
@@ -9,8 +9,8 @@ class CaseData:
     def __init__(
         self,
         molecule: stk.BuildingBlock,
-        generator: bbprep.generators.Generator,
-        selector: bbprep.selectors.Selector,
+        generator: bbprepared.generators.Generator,
+        selector: bbprepared.selectors.Selector,
         target_value: float,
         best_id: int,
         best_value: float,

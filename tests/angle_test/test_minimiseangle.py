@@ -2,7 +2,7 @@ import pathlib
 
 import numpy as np
 
-from bbprep import MinimiseAngle
+from bbprepared import MinimiseAngle
 
 from .case_data import CaseData
 

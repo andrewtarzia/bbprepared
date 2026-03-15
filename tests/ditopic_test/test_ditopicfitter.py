@@ -2,7 +2,7 @@ import pathlib
 
 import numpy as np
 
-from bbprep import DitopicFitter
+from bbprepared import DitopicFitter
 
 from .case_data import CaseData
 

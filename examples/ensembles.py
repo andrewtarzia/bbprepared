@@ -4,7 +4,7 @@ from pathlib import Path
 import stk
 import stko
 
-import bbprep
+import bbprepared
 
 logging.basicConfig(
     level=logging.INFO,
@@ -29,17 +29,17 @@ def main() -> None:
     examples_output = Path("out_ensembles")
     examples_output.mkdir(parents=True, exist_ok=True)
 
-    calculator = bbprep.EnergyCalculator(
+    calculator = bbprepared.EnergyCalculator(
         name="MMFFEnergy",
         function=stko.MMFFEnergy().get_energy,
     )
 
-    optimiser = bbprep.Optimiser(
+    optimiser = bbprepared.Optimiser(
         name="MMFF",
         function=stko.MMFF().optimize,
     )
 
-    generator = bbprep.generators.ETKDG(num_confs=30)
+    generator = bbprepared.generators.ETKDG(num_confs=30)
     ensemble = generator.generate_conformers(
         stk.BuildingBlock.init_from_molecule(polymer)
     )

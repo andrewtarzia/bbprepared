@@ -2,7 +2,7 @@ import pathlib
 
 import numpy as np
 
-from bbprep import Planarfy
+from bbprepared import Planarfy
 
 from .case_data import CaseData
 

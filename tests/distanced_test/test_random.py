@@ -1,4 +1,4 @@
-from bbprep import RandomFGs
+from bbprepared import RandomFGs
 
 from .case_data import CaseData
 

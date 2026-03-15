@@ -1,7 +1,7 @@
 import pytest
 import stk
 
-import bbprep
+import bbprepared
 
 from .case_data import CaseData
 
@@ -17,7 +17,7 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            generator=bbprep.generators.ETKDG(num_confs=30),
+            generator=bbprepared.generators.ETKDG(num_confs=30),
             min_value=0.04699259444933887,
             min_id=5,
             name=name,
@@ -31,7 +31,7 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            generator=bbprep.generators.ETKDG(num_confs=30),
+            generator=bbprepared.generators.ETKDG(num_confs=30),
             min_value=0.8249489663822132,
             min_id=13,
             name=name,
@@ -45,7 +45,7 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            generator=bbprep.generators.ETKDG(num_confs=30),
+            generator=bbprepared.generators.ETKDG(num_confs=30),
             min_value=0.7929100911809754,
             min_id=5,
             name=name,
