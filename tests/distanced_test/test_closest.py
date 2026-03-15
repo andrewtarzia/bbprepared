@@ -2,7 +2,7 @@ import pathlib
 
 import stk
 
-from bbprep import ClosestFGs
+from bbprepared import ClosestFGs
 
 from .case_data import CaseData
 

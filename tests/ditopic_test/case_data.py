@@ -1,6 +1,6 @@
 import stk
 
-import bbprep
+import bbprepared
 
 
 class CaseData:
@@ -9,7 +9,7 @@ class CaseData:
     def __init__(
         self,
         molecule: stk.BuildingBlock,
-        generator: bbprep.generators.Generator,
+        generator: bbprepared.generators.Generator,
         min_id: int,
         min_value: float,
         name: str,

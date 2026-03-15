@@ -26,7 +26,7 @@ Introduction
 
 .. figure:: _static/logo.png
 
-:mod:`bbprepared` or ``bbprep`` is a toolkit aimed at simplifying the
+:mod:`bbprepared` is a toolkit aimed at simplifying the
 preparation of your building blocks for
 `stk <https://stk.readthedocs.io/en/stable/>`_ construction and analysis.
 

@@ -2,7 +2,7 @@ import pathlib
 
 import numpy as np
 
-from bbprep import TargetTorsion
+from bbprepared import TargetTorsion
 
 from .case_data import CaseData
 

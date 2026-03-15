@@ -7,7 +7,7 @@
 Introduction
 ============
 
-``bbprepared`` or ``bbprep`` is a toolkit aimed at simplifying the
+``bbprepared`` is a toolkit aimed at simplifying the
 preparation of your building blocks for
 `stk <https://stk.readthedocs.io/en/stable/>`_ construction and analysis.
 

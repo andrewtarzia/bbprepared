@@ -2,7 +2,7 @@ import pathlib
 
 import stk
 
-from bbprep import FurthestFGs
+from bbprepared import FurthestFGs
 
 from .case_data import CaseData
 

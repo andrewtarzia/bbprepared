@@ -1,7 +1,7 @@
 import pytest
 import stk
 
-import bbprep
+import bbprepared
 
 from .case_data import CaseData
 
@@ -12,15 +12,15 @@ from .case_data import CaseData
             molecule=stk.BuildingBlock(
                 smiles="C1=CC(=CC(=C1)C2=CN=CC=C2)C3=CN=CC=C3"
             ),
-            generator=bbprep.generators.GeometryScanner(
+            generator=bbprepared.generators.GeometryScanner(
                 target_ranges=(
-                    bbprep.generators.AngleRange(
+                    bbprepared.generators.AngleRange(
                         smarts="[#7X2]@[#6X3]@[#6X3H0]-!@[#6X3H0]@[#6X3]",
                         expected_num_atoms=5,
                         scanned_ids=(2, 3, 4),
                         scanned_range=[-5.0, 0, 5.0, 10.0],
                     ),
-                    bbprep.generators.BondRange(
+                    bbprepared.generators.BondRange(
                         smarts="[#7X2]@[#6X3]",
                         expected_num_atoms=2,
                         scanned_ids=(0, 1),
@@ -36,9 +36,9 @@ from .case_data import CaseData
         ),
         lambda name: CaseData(
             molecule=stk.BuildingBlock(smiles="C1=CC=C(C=C1)C2=CC=CC=C2"),
-            generator=bbprep.generators.GeometryScanner(
+            generator=bbprepared.generators.GeometryScanner(
                 target_ranges=(
-                    bbprep.generators.BondRange(
+                    bbprepared.generators.BondRange(
                         smarts="[#6X3H0]-!@[#6X3H0]",
                         expected_num_atoms=2,
                         scanned_ids=(0, 1),
@@ -57,8 +57,8 @@ from .case_data import CaseData
                 smiles="C1=CC(=CC(=C1)Br)Br",
                 functional_groups=stk.BromoFactory(deleters=(), bonders=(1,)),
             ),
-            generator=bbprep.generators.SelectorDistanceScanner(
-                selector=bbprep.selectors.BindersSelector(),
+            generator=bbprepared.generators.SelectorDistanceScanner(
+                selector=bbprepared.selectors.BindersSelector(),
                 scanned_changes=[-2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2.0],
             ),
             num_confs=9,

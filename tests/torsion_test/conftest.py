@@ -1,7 +1,7 @@
 import pytest
 import stk
 
-import bbprep
+import bbprepared
 
 from .case_data import CaseData
 
@@ -13,11 +13,11 @@ from .case_data import CaseData
             target_value=180,
             best_value=180,
             best_id=12,
-            selector=bbprep.selectors.BySmartsSelector(
+            selector=bbprepared.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6][#7]",
                 selected_indices=(0, 1, 2, 3),
             ),
-            generator=bbprep.generators.ETKDG(num_confs=20),
+            generator=bbprepared.generators.ETKDG(num_confs=20),
             name=name,
         ),
         lambda name: CaseData(
@@ -25,11 +25,11 @@ from .case_data import CaseData
             target_value=0,
             best_value=0,
             best_id=5,
-            selector=bbprep.selectors.BySmartsSelector(
+            selector=bbprepared.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6]=[#8]",
                 selected_indices=(0, 1, 2, 3),
             ),
-            generator=bbprep.generators.ETKDG(num_confs=20),
+            generator=bbprepared.generators.ETKDG(num_confs=20),
             name=name,
         ),
         lambda name: CaseData(
@@ -37,13 +37,13 @@ from .case_data import CaseData
             target_value=120,
             best_value=120,
             best_id=3,
-            selector=bbprep.selectors.BySmartsSelector(
+            selector=bbprepared.selectors.BySmartsSelector(
                 smarts="[#7][#6][#6][#7]",
                 selected_indices=(0, 1, 2, 3),
             ),
-            generator=bbprep.generators.TorsionScanner(
+            generator=bbprepared.generators.TorsionScanner(
                 target_torsions=(
-                    bbprep.generators.TorsionRange(
+                    bbprepared.generators.TorsionRange(
                         smarts="[#7][#6][#6][#7]",
                         expected_num_atoms=4,
                         scanned_ids=(0, 1, 2, 3),
@@ -58,12 +58,12 @@ from .case_data import CaseData
             target_value=-120,
             best_value=-120,
             best_id=6,
-            selector=bbprep.selectors.BySmartsSelector(
+            selector=bbprepared.selectors.BySmartsSelector(
                 smarts="[#6][#7][#6][#6][#7][#6]",
                 selected_indices=(1, 2, 3, 4),
             ),
-            generator=bbprep.generators.TorsionScanner(
-                target_torsions=bbprep.generators.TorsionRange(
+            generator=bbprepared.generators.TorsionScanner(
+                target_torsions=bbprepared.generators.TorsionRange(
                     smarts="[#7][#6][#6][#7]",
                     expected_num_atoms=4,
                     scanned_ids=(0, 1, 2, 3),

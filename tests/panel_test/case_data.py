@@ -1,6 +1,6 @@
 import stk
 
-from bbprep import Modifier
+from bbprepared import Modifier
 
 
 class CaseData:

@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 import stk
 
-import bbprep
+import bbprepared
 
 from .case_data import CaseData
 
@@ -18,9 +18,11 @@ mol_5 = stk.BuildingBlock(
     origin=np.array((0, 0, 0)),
 )
 # This is not the cheapest approach, but works well in this case!
-process = bbprep.Planarfy(
-    ensemble=bbprep.generators.ETKDG(num_confs=10).generate_conformers(mol_5),
-    selector=bbprep.selectors.BindersSelector(),
+process = bbprepared.Planarfy(
+    ensemble=bbprepared.generators.ETKDG(num_confs=10).generate_conformers(
+        mol_5
+    ),
+    selector=bbprepared.selectors.BindersSelector(),
 )
 _planar_mol_5 = process.get_minimum().molecule
 
@@ -36,7 +38,7 @@ _planar_mol_5 = process.get_minimum().molecule
                 axis=np.array((1, 2, 3)),
                 origin=np.array((0, 0, 0)),
             ),
-            orientmethod=bbprep.ReorientC2Panel(),
+            orientmethod=bbprepared.ReorientC2Panel(),
             fg_reorder=(3, 0, 2, 1),
             mapping={0: 2, 1: 0, 2: 1, 3: 3},
             name=name,
@@ -50,7 +52,7 @@ _planar_mol_5 = process.get_minimum().molecule
                 axis=np.array((1, 2, 3)),
                 origin=np.array((0, 0, 0)),
             ),
-            orientmethod=bbprep.ReorientC1Panel(),
+            orientmethod=bbprepared.ReorientC1Panel(),
             fg_reorder=(3, 0, 2, 1),
             mapping={0: 2, 1: 0, 2: 1, 3: 3},
             name=name,
@@ -67,7 +69,7 @@ _planar_mol_5 = process.get_minimum().molecule
                 axis=np.array((1, 2, 3)),
                 origin=np.array((0, 0, 0)),
             ),
-            orientmethod=bbprep.ReorientC2Panel(),
+            orientmethod=bbprepared.ReorientC2Panel(),
             fg_reorder=(2, 0, 1, 3),
             mapping={0: 3, 1: 0, 2: 1, 3: 2},
             name=name,
@@ -84,7 +86,7 @@ _planar_mol_5 = process.get_minimum().molecule
                 axis=np.array((1, 2, 3)),
                 origin=np.array((0, 0, 0)),
             ),
-            orientmethod=bbprep.ReorientC2Panel(),
+            orientmethod=bbprepared.ReorientC2Panel(),
             fg_reorder=(1, 0, 3, 2),
             mapping={0: 0, 1: 1, 2: 2, 3: 3},
             name=name,
@@ -101,14 +103,14 @@ _planar_mol_5 = process.get_minimum().molecule
                 axis=np.array((1, 2, 3)),
                 origin=np.array((0, 0, 0)),
             ),
-            orientmethod=bbprep.ReorientC1Panel(),
+            orientmethod=bbprepared.ReorientC1Panel(),
             fg_reorder=(1, 0, 3, 2),
             mapping={0: 1, 1: 0, 2: 2, 3: 3},
             name=name,
         ),
         lambda name: CaseData(
             molecule=_planar_mol_5,
-            orientmethod=bbprep.ReorientC1Panel(),
+            orientmethod=bbprepared.ReorientC1Panel(),
             fg_reorder=(2, 0, 3, 1),
             mapping={0: 0, 1: 1, 2: 2, 3: 3},
             name=name,
