@@ -2,7 +2,7 @@ import numpy as np
 import stk
 import stko
 
-from bbprep._internal.ensemble.ensemble import Conformer
+from bbprepared._internal.ensemble.ensemble import Conformer
 
 from .process import Process
 

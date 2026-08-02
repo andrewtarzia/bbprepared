@@ -1,6 +1,6 @@
 import stk
 
-from bbprep._internal.ensemble.ensemble import Ensemble
+from bbprepared._internal.ensemble.ensemble import Ensemble
 
 
 class Generator:

@@ -6,7 +6,7 @@ import stk
 class CaseData:
     """A test case."""
 
-    def __init__(
+    def __init__(  # noqa: PLR0917
         self,
         molecule: stk.BuildingBlock,
         desired_functional_groups: int,

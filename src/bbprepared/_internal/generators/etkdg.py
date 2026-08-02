@@ -1,7 +1,7 @@
 import stk
 from rdkit.Chem import AllChem
 
-from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
+from bbprepared._internal.ensemble.ensemble import Conformer, Ensemble
 
 from .generator import Generator
 
