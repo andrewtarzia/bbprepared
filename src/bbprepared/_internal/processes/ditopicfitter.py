@@ -2,10 +2,10 @@ import numpy as np
 import stk
 import stko
 
-from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
-from bbprep._internal.selectors.binders import BindersSelector
-from bbprep._internal.selectors.notplacers import NotPlacersSelector
-from bbprep._internal.selectors.selector import NullSelector
+from bbprepared._internal.ensemble.ensemble import Conformer, Ensemble
+from bbprepared._internal.selectors.binders import BindersSelector
+from bbprepared._internal.selectors.notplacers import NotPlacersSelector
+from bbprepared._internal.selectors.selector import NullSelector
 
 from .process import Process
 

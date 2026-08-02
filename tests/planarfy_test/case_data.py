@@ -6,7 +6,7 @@ import bbprepared
 class CaseData:
     """A test case."""
 
-    def __init__(
+    def __init__(  # noqa: PLR0917
         self,
         molecule: stk.BuildingBlock,
         generator: bbprepared.generators.Generator,

@@ -8,7 +8,7 @@ maintainers = [
   { name = "Andrew Tarzia", email = "andrew.tarzia@gmail.com" },
 ]
 dependencies = [
-  "rdkit",
+  "rdkit==2025.9.5", # Until stk issue resolved.
   "stk",
   "stko",
 ]
@@ -49,11 +49,11 @@ where = [
 
 [tool.ruff]
 line-length = 79
-extend-exclude = ["src/bbprepared/_version.py","src/bbprep/_version.py"]
+extend-exclude = ["src/bbprepared/_version.py"]
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["ANN401", "COM812", "ISC001"]
+ignore = ["ANN401", "COM812", "ISC001", "CPY001"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

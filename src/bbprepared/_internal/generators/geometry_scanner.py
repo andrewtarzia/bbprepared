@@ -5,7 +5,7 @@ import stk
 import stko
 from rdkit.Chem import AllChem, rdMolTransforms
 
-from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
+from bbprepared._internal.ensemble.ensemble import Conformer, Ensemble
 
 from .generator import Generator
 from .targets import AngleRange, BondRange, TorsionRange

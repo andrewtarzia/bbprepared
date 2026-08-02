@@ -6,8 +6,8 @@ import stk
 import stko
 from rdkit.Chem import AllChem
 
-from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
-from bbprep.selectors import Selector
+from bbprepared._internal.ensemble.ensemble import Conformer, Ensemble
+from bbprepared.selectors import Selector
 
 from .generator import Generator
 

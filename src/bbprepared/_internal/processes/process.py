@@ -2,8 +2,8 @@ from collections import abc
 
 import stk
 
-from bbprep._internal.ensemble.ensemble import Conformer, Ensemble
-from bbprep._internal.selectors.selector import Selector
+from bbprepared._internal.ensemble.ensemble import Conformer, Ensemble
+from bbprepared._internal.selectors.selector import Selector
 
 
 class Process:
