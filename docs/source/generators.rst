@@ -11,6 +11,7 @@ or torsion scans.
   Generator <_autosummary/bbprepared.generators.Generator>
   ETKDG <_autosummary/bbprepared.generators.ETKDG>
   TorsionScanner <_autosummary/bbprepared.generators.TorsionScanner>
+  XtbTorsionScanner <_autosummary/bbprepared.generators.XtbTorsionScanner>
   GeometryScanner <_autosummary/bbprepared.generators.GeometryScanner>
   SelectorDistanceScanner <_autosummary/bbprepared.generators.SelectorDistanceScanner>
 
@@ -135,3 +136,53 @@ many ranges. Once you have an ensemble, you can do normal analysis.
             ) for bond in conformers[0].molecule.get_bonds()
         ),
     )
+
+
+Using the `xtb scan method <https://xtb-docs.readthedocs.io/en/latest/scan.html>`_,
+``bbprepared`` can now scan torsions with improved accuracy in :class:`bbprepared.generators.XtbTorsionScanner`.
+
+You can install ``xtb`` with ``mamba install xtb`` in a `mamba environment`, or
+by downloading the source from the site above.
+
+.. code:: python
+
+    import stk
+    import bbprepared
+
+    smiles = "C(C#CC1C=CC=C(Br)C=1)1C=CC=C(Br)C=1"
+
+    building_block = stk.BuildingBlock(
+        smiles=smiles,
+        functional_groups=(stk.BromoFactory(),),
+    )
+
+    # Rotate around alkynes.
+    smarts_to_rotate = "[#6X3][#6X3][#6X2H0]#!@[#6X2H0][#6X3][#6X3]"
+    selected_indices = (0, 1, 4, 5)
+    expected_num_atoms = 6
+
+    selector = bbprep.selectors.BySmartsSelector(
+        smarts=smarts_to_rotate,
+        selected_indices=selected_indices,
+    )
+
+    generator = XtbTorsionScanner(
+        target_torsions=(
+            bbprep.generators.TorsionRange(
+                smarts=smarts_to_rotate,
+                expected_num_atoms=expected_num_atoms,
+                scanned_ids=selected_indices,
+                scanned_range=range(0, 359, 20),
+            ),
+        ),
+        # We cannot test this code because xtb is a dependancy.
+        xtb_path=xtb_path,
+        output_dir=calculation_dir,
+    )
+    ensemble = generator.generate_conformers(molecule)
+
+    # This gives an ensemble with conformers that have a score attribute
+    # equal to the GFN2-xTB energy in Ha.
+    for conformer in ensemble.yield_conformers():
+        energy = conformer.score * 2625.5 # to kJ/mol.
+        # Plot...
