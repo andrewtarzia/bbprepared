@@ -1,5 +1,5 @@
-Torsion scan.
-=============
+Torsion scan with alignment.
+============================
 
 This is a simple script for selecting a torsion, scanning around it and saving
 the energy and the torsion value. Changes will be necessary for more than one
@@ -9,7 +9,10 @@ torsion.
 .. testcode:: recipe5-test
 
     import stk
+    import stko
     import bbprepared
+    import rmsd
+    import numpy as np
 
     smiles = "C(C#CC1C=CC=C(Br)C=1)1C=CC=C(Br)C=1"
 
@@ -23,15 +26,15 @@ torsion.
     selected_indices = (0, 1, 4, 5)
     expected_num_atoms = 6
 
-    selector = bbprep.selectors.BySmartsSelector(
+    selector = bbprepared.selectors.BySmartsSelector(
         smarts=smarts_to_rotate,
         selected_indices=selected_indices,
     )
 
     # Scan with MMFF.
-    generator = TorsionScanner(
+    generator = bbprepared.generators.TorsionScanner(
         target_torsions=(
-            bbprep.generators.TorsionRange(
+            bbprepared.generators.TorsionRange(
                 smarts=smarts_to_rotate,
                 expected_num_atoms=expected_num_atoms,
                 scanned_ids=selected_indices,
@@ -39,7 +42,7 @@ torsion.
             ),
         ),
     )
-    ensemble = generator.generate_conformers(molecule)
+    ensemble = generator.generate_conformers(building_block)
 
     energies = []
     torsions = []
@@ -69,8 +72,10 @@ torsion.
             )
             * 4.184
         )
+        energies.append(energy)
 
         atom_positions = aligned_.get_position_matrix()
+        atoms_to_be_constrained = set()
         for found in selector.yield_stepwise(aligned_):
             found_str = "_".join(str(i) for i in found)
             if not any(i in atoms_to_be_constrained for i in found):
@@ -115,10 +120,9 @@ torsion.
 
     import numpy as np
 
+    assert len(torsions) == len(energies)
     assert np.isclose(
-        process.calculate_score(
-            conformer=min_molecule,
-            conformer_id=min_molecule.conformer_id,
-        ),
-        0.8249489663822132,
+        torsions[0],
+        94.68507799783941,
     )
+    assert np.isclose(energies[0], 95.3580783835897)

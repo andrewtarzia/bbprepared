@@ -32,6 +32,7 @@ dev = [
   "build",
   "furo",
   "moldoc",
+  "rmsd",
 ]
 
 [project.urls]

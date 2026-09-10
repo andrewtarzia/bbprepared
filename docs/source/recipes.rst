@@ -11,4 +11,4 @@ Here are some useful recipes I use.
    Lowest energy conformer <recipes/recipe_2>
    Set torsions in a BB <recipes/recipe_3>
    Ditopic functional group alignment <recipes/recipe_4>
-   Torsion scan <recipes/recipe_5>
+   Torsion scan with alignment <recipes/recipe_5>
