@@ -12,6 +12,9 @@ from bbprepared._internal.generators.targets import (
     TorsionRange,
 )
 from bbprepared._internal.generators.torsion_scanner import TorsionScanner
+from bbprepared._internal.generators.xtb_torsion_scanner import (
+    XtbTorsionScanner,
+)
 
 __all__ = [
     "ETKDG",
@@ -22,4 +25,5 @@ __all__ = [
     "SelectorDistanceScanner",
     "TorsionRange",
     "TorsionScanner",
+    "XtbTorsionScanner",
 ]

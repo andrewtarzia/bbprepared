@@ -28,6 +28,7 @@ bbprepared.generators
       SelectorDistanceScanner
       TorsionRange
       TorsionScanner
+      XtbTorsionScanner
    
    
 

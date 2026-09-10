@@ -7,7 +7,7 @@ torsion.
 
 We can scan over a torsion.
 
-.. testcode:: recipe5-test
+.. testcode:: recipe3-test
 
     import stk
     import bbprepared
@@ -30,7 +30,7 @@ We can scan over a torsion.
 
 Then we can select specific torsions.
 
-.. testcode:: recipe5-test
+.. testcode:: recipe3-test
 
     target1 = 120
     process1 = bbprepared.TargetTorsion(
@@ -154,7 +154,7 @@ Then we can select specific torsions.
 
 
 
-.. testcode:: recipe5-test
+.. testcode:: recipe3-test
     :hide:
 
     import numpy as np
