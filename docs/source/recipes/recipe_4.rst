@@ -5,7 +5,7 @@ This is a simple script for selecting a building block with two functional
 groups aligned.
 
 
-.. testcode:: recipe6-test
+.. testcode:: recipe4-test
 
     import stk
     import bbprepared
@@ -69,7 +69,7 @@ groups aligned.
         ),
     )
 
-.. testcode:: recipe6-test
+.. testcode:: recipe4-test
     :hide:
 
     import numpy as np
