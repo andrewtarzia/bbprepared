@@ -16,7 +16,7 @@ preparation of your building blocks for
 Installation
 ============
 
-To get :mod:`.bbprepared`, you can install it with pip. However, there is a
+To get ``bbprepared``, you can install it with pip. However, there is a
 distinction based on if you want the "lite" versions of ``stk`` and ``stko``.
 This command will just give you ``bbprepared``, but will not provide all the
 dependancies:
@@ -56,7 +56,7 @@ You can do this in one step as:
 Developer Setup
 ---------------
 
-To develop with :mod:`bbprepared`, you can clone the repo and use
+To develop with ``bbprepared``, you can clone the repo and use
 `just <https://github.com/casey/just>`_ and `uv <https://docs.astral.sh>`_
 to setup the dev environment with ``stk-lite``/``stko-lite``:
 

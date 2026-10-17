@@ -39,6 +39,9 @@ fix:
 build:
   uv build
 
+check_release:
+  uv run twine check dist/*
+
 # Build docs.
 docs:
   rm -rf docs/source/_autosummary
