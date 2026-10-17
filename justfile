@@ -4,7 +4,7 @@ default:
 
 # Do a dev install.
 setup:
-  uv sync --all-extras --dev
+  uv sync --extra dev --extra lite --dev
 
 # Run code checks.
 check:

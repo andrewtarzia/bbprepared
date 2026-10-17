@@ -25,6 +25,7 @@ extensions = [
 ]
 
 autosummary_imported_members = True
+autosummary_ignore_module_all = False
 
 autodoc_typehints = "description"
 autodoc_member_order = "groupwise"

@@ -12,25 +12,58 @@ preparation of your building blocks for
 `stk <https://stk.readthedocs.io/en/stable/>`_ construction and analysis.
 
 
+
 Installation
 ============
 
-To get ``bbprepared``, you can install it with pip:
+To get :mod:`.bbprepared`, you can install it with pip. However, there is a
+distinction based on if you want the "lite" versions of ``stk`` and ``stko``.
+This command will just give you ``bbprepared``, but will not provide all the
+dependancies:
 
 .. code-block:: bash
 
   pip install bbprepared
 
+You can then add ``stk``/``stko``:
+
+.. code-block:: bash
+
+  pip install stk stko
+
+Or ``stk-lite``/``stko-lite``:
+
+.. code-block:: bash
+
+  pip install stk-lite stko-lite
+
+You can do this in one step as:
+
+.. code-block:: bash
+
+  pip install "bbprepared[full]" # For stk/stko
+  pip install "bbprepared[lite]" # For stk-lite/stko-lite
+
+.. warning::
+
+  You should not mix ``stk``/``stko`` and ``stk-lite``/``stko-lite`` and
+  ``bbprepared`` will raise an error if you do.
+
+  Fix: "pip uninstall -y stk stk-lite stko stko-lite && " then
+  "pip install 'bbprepared[full]'" (or 'bbprepared[lite]')
+
+
 Developer Setup
 ---------------
 
-To develop with ``bbprepared``, you can clone the repo and use
+To develop with :mod:`bbprepared`, you can clone the repo and use
 `just <https://github.com/casey/just>`_ and `uv <https://docs.astral.sh>`_
-to setup the dev environment:
+to setup the dev environment with ``stk-lite``/``stko-lite``:
 
 .. code-block:: bash
 
   just setup
+
 
 
 

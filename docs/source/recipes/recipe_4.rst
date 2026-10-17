@@ -79,5 +79,5 @@ groups aligned.
             conformer=min_molecule,
             conformer_id=min_molecule.conformer_id,
         ),
-        0.8249489663822132,
+        0.8128047398711786,
     )

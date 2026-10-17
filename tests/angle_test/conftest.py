@@ -13,9 +13,9 @@ from .case_data import CaseData
                 smiles="CCC",
             ),
             generator=bbprepared.generators.ETKDG(num_confs=30),
-            min_value=104.2222824251476,
+            min_value=102.86319686741591,
             selector=bbprepared.selectors.AllNonHSelector(),
-            min_id=6,
+            min_id=8,
             name=name,
         ),
         lambda name: CaseData(
@@ -28,9 +28,9 @@ from .case_data import CaseData
                 ),
             ),
             generator=bbprepared.generators.ETKDG(num_confs=30),
-            min_value=119.65754691633659,
+            min_value=117.0241784117425,
             selector=bbprepared.selectors.XCOMXSelector(),
-            min_id=4,
+            min_id=26,
             name=name,
         ),
         lambda name: CaseData(
@@ -42,8 +42,8 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            min_value=149.46026131529828,
-            min_id=86,
+            min_value=145.75704661887679,
+            min_id=13,
             selector=bbprepared.selectors.XCOMXSelector(),
             generator=bbprepared.generators.TorsionScanner(
                 target_torsions=(
@@ -68,8 +68,8 @@ from .case_data import CaseData
                     deleters=(),
                 ),
             ),
-            min_value=149.46026131529828,
-            min_id=86,
+            min_value=145.75704661887679,
+            min_id=13,
             selector=bbprepared.selectors.XCOMXSelector(),
             generator=bbprepared.generators.GeometryScanner(
                 target_ranges=(

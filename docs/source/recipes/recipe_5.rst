@@ -123,6 +123,6 @@ torsion.
     assert len(torsions) == len(energies)
     assert np.isclose(
         torsions[0],
-        94.68507799783941,
+        94.68214973092601,
     )
-    assert np.isclose(energies[0], 95.3580783835897)
+    assert np.isclose(energies[0], 95.3580783735303)

@@ -1,5 +1,8 @@
 """bbprepared module."""
 
+from importlib.metadata import PackageNotFoundError, version
+from importlib.util import find_spec
+
 from bbprepared import generators, selectors
 from bbprepared._internal.ensemble.calculators import (
     EnergyCalculator,
@@ -23,6 +26,32 @@ from bbprepared._internal.processes.ditopicfitter import DitopicFitter
 from bbprepared._internal.processes.planarfy import Planarfy
 from bbprepared._internal.processes.process import Process, TargetProcess
 from bbprepared._internal.processes.torsion import TargetTorsion
+
+
+def _has(pack: str) -> bool:
+    try:
+        version(pack)
+    except PackageNotFoundError:
+        return False
+    return True
+
+
+for full, light in (("stk", "stk-lite"), ("stko", "stko-lite")):
+    if _has(full) and _has(light):
+        msg = (
+            f"{full} and {light} are both installed and conflict.\n"
+            f"Fix: pip uninstall -y {full} {light} && "
+            "pip install 'bbprepared[full]' "
+            "(or 'bbprepared[lite]')"
+        )
+        raise ImportError(msg)
+
+if find_spec("stk") is None or find_spec("stko") is None:
+    msg = (
+        "Missing dependencies. Install 'bbprepared[full]' or "
+        "'bbprepared[lite]'."
+    )
+    raise ImportError(msg)
 
 __all__ = [
     "ClosestFGs",
