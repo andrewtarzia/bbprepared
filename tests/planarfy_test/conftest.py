@@ -30,7 +30,7 @@ from .case_data import CaseData
             ),
             generator=bbprepared.generators.ETKDG(num_confs=10),
             selector=bbprepared.selectors.BindersSelector(),
-            min_value=0.21915557083124104,
+            min_value=0.2138050499213341,
             min_id=0,
             name=name,
         ),
@@ -41,7 +41,7 @@ from .case_data import CaseData
             generator=bbprepared.generators.ETKDG(num_confs=10),
             selector=bbprepared.selectors.AllSelector(),
             min_value=0.0,
-            min_id=7,
+            min_id=9,
             name=name,
         ),
         lambda name: CaseData(
