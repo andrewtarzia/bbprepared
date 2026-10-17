@@ -20,9 +20,9 @@ bbprepared.generators
       :template: class.rst
       :nosignatures:
    
+      ETKDG
       AngleRange
       BondRange
-      ETKDG
       Generator
       GeometryScanner
       SelectorDistanceScanner
