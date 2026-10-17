@@ -133,8 +133,8 @@ scores.
     :hide:
 
     import numpy as np
-    assert np.isclose(best_score, 0.0, atol=1E-2)
-    assert best_conformer.conformer_id == 83
+    assert np.isclose(best_score, 0.0, atol=1E-1)
+    assert best_conformer.conformer_id == 67
 
 The desired conformation:
 

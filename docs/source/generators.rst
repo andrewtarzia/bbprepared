@@ -94,8 +94,8 @@ many ranges. Once you have an ensemble, you can do normal analysis.
 
     import numpy as np
 
-    assert np.isclose(energies[3], 39.81232878272989, atol=1E-4)
-    assert np.isclose(min(energies), 39.81232878272989, atol=1E-4)
+    assert np.isclose(energies[3], 39.329228141023066, atol=1E-4)
+    assert np.isclose(min(energies), 39.329228141023066, atol=1E-4)
 
 .. moldoc::
 

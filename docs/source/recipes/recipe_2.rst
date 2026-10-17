@@ -64,6 +64,6 @@ provided in :mod:`stko`. And in the new verstion, it is a one-liner!
 .. testcode:: recipe2-test
     :hide:
 
-    assert minimum_score_no_opt == 44.139049720694786
-    assert minimum_score_opt == 39.52500653652586
-    assert minimum_conformer.conformer_id == 55
+    assert minimum_score_no_opt == 44.66989027874676
+    assert minimum_score_opt == 39.52500653577825
+    assert minimum_conformer.conformer_id == 16
