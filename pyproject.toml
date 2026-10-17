@@ -7,16 +7,14 @@ name = "bbprepared"
 maintainers = [
   { name = "Andrew Tarzia", email = "andrew.tarzia@gmail.com" },
 ]
-dependencies = [
-  "rdkit==2025.9.5", # Until stk issue resolved.
-  "stk",
-  "stko",
-]
+dependencies = []
 requires-python = ">=3.11"
 dynamic = ["version"]
 readme = "README.rst"
 
 [project.optional-dependencies]
+full = ["stk", "stko"]
+lite = ["stk-lite", "stko-lite"]
 dev = [
   "ruff",
   "mypy",
@@ -32,7 +30,6 @@ dev = [
   "build",
   "furo",
   "moldoc",
-  "rmsd",
 ]
 
 [project.urls]
@@ -47,6 +44,9 @@ where = [
   # list of folders that contain the packages (["."] by default)
   "src",
 ]
+
+[tool.uv]
+conflicts = [[{ extra = "full" }, { extra = "lite" }]]
 
 [tool.ruff]
 line-length = 79
