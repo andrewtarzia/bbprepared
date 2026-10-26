@@ -30,6 +30,7 @@ dev = [
   "build",
   "furo",
   "moldoc",
+  "matplotlib",
 ]
 
 [project.urls]
